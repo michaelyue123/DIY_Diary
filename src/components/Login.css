@@ -1,12 +1,9 @@
-.body {
-    background-image: url("");
-}
-
-
-.ui.form {
-    width: 50%;
-}
-
-.h3 {
+h3 {
     text-align: center;
+    color: aliceblue;
+}
+
+.ui.container {
+    margin-top: 100px;
+    width: 55%;
 }
