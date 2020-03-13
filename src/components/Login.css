@@ -5,5 +5,10 @@ h3 {
 
 .ui.container {
     margin-top: 100px;
-    width: 55%;
+    width: 30%;
+    justify-content: center;
+}
+
+.ui.button:hover {
+    background-color: rgb(44, 103, 107);
 }
