@@ -1,0 +1,22 @@
+#register {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 100px;
+    position: relative;
+}
+
+#text {
+    color: black;
+    font-family: cursive;
+    font-size: 1.3em;
+}
+
+#container {
+    width: 35%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+.field {
+    width: 100%;
+}

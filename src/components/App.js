@@ -1,15 +1,24 @@
 import React from 'react';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import NavBar from './NavBar';
+import Home from './Home';
+import Register from './Register';
 import Login from './Login';
-import Navbar from './Navbar';
 
 
 class App extends React.Component {
     render() {
         return (
-            <div>
-                <Navbar />
-                <Login />
-            </div>
+            <Router>
+                <div>
+                    <NavBar />
+                    <Switch>
+                        <Route exact strict path="/Home" component={Home} />
+                        <Route exact strict path="/Register" component={Register} />
+                        <Route exact strict path="/Login" component={Login}/>
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }

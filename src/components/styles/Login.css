@@ -1,0 +1,20 @@
+.login {
+    text-align: center;
+    color: aliceblue;
+    position: relative;
+}
+
+.ui.container {
+    margin-top: 100px;
+    width: 30%;
+    justify-content: center;
+}
+
+.ui.button:hover {
+    background-color: rgb(44, 103, 107);
+}
+
+#one {
+    font-family: cursive;
+    font-size: 1.3em;
+}

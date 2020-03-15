@@ -1,0 +1,31 @@
+.ui.home {
+    text-align: center;
+    margin-top: 200px;
+    color: aliceblue;
+    position: relative;
+    font-family: fantasy;
+    font-size: 3.3em;
+}
+
+#universe {
+    width: 800px;
+    height: 40%px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 5px solid rgba(0, 0, 0, 0.3);    
+    transition: 1s;
+}
+
+#universe:hover {
+    transform: scale(1.1);
+}
+
+#text1 {
+    position: relative;
+    color: aliceblue;
+    font-family: fantasy;
+    font-size: 3.3em;
+    text-align: center;
+}

@@ -1,51 +1,39 @@
 import React from 'react';
-import './Login.css';
+import './styles/Login.css';
 
 class Login extends React.Component {
-    state = { email:'', password:'', hidden:true };
-
-    handleEmailChange = e => {
-        this.setState({ email: e.target.value });
-    }
-
-    handlePasswordChange = e => {
-        this.setState({ password: e.target.value });
-    }
-
-    toggleShow =() => {
-        this.setState({ hidden: !this.state.hidden });
-    }
+    state = { hidden: true };
 
     // call back function
     onFormSubmit = event => {
         event.preventDefault();
-
     }
 
     render() {
         return (
             <div className="ui container">
-                <h3>Sign in</h3>
+                <h1 className="login">Sign in</h1>
                 <div className="ui segment">
                     <form className="ui form">
                         <div className="field">
-                            <label>email</label>
+                            <label id="one" for="email">Email</label>
                             <input 
-                            type="text" 
+                            type="email" 
                             value={this.state.email} 
-                            onChange={this.handleEmailChange} 
-                            name="email" 
+                            id="email"
+                            pattern=".+@globex.com" size="30"
                             placeholder="enter your email address" required
                             />
                         </div>
                         <div className="field">
-                            <label>password</label>
+                            <label id="one" for="pass">Password</label>
                             <input 
                             type={this.state.hidden ? "password" : "text"} 
                             value={this.state.password} 
-                            onChange={this.handlePasswordChange} 
                             name="password" 
+                            id="pass"
                             placeholder="enter your password" 
+                            minLength="8"
                             required
                             />
                         </div>
