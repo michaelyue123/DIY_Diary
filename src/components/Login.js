@@ -9,6 +9,10 @@ class Login extends React.Component {
         event.preventDefault();
     }
 
+    toggleShow = () => {
+        this.setState({ hidden: !this.state.hidden });
+    }
+
     render() {
         return (
             <div className="ui container">
@@ -21,7 +25,7 @@ class Login extends React.Component {
                             type="email" 
                             value={this.state.email} 
                             id="email"
-                            pattern=".+@globex.com" size="30"
+                            size="30"
                             placeholder="enter your email address" required
                             />
                         </div>
