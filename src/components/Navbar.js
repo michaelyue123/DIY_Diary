@@ -1,27 +1,28 @@
 import React from 'react';
-import './styles/Navbar.css'
+import './styles/Navbar.css';
+import { Link } from 'react-router-dom';
 
 
 const NavBar = () =>  {
     return(
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="/Home">DIY Diary</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a className="navbar-brand" href="/Home">DIY Diary</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="/Home">
+                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="navbar-nav">
+                        <Link className="nav-item nav-link" to="/Home">
                             Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                        <a class="nav-item nav-link" href="/Register">
+                            <span className="sr-only">(current)</span>
+                        </Link>
+                        <Link className="nav-item nav-link" to="/Register">
                             Register
-                        </a>
-                        <a class="nav-item nav-link" href="/Login">
+                        </Link>
+                        <Link className="nav-item nav-link" to="/Login">
                             Sign in 
-                        </a>     
+                        </Link>     
                     </div>
                 </div>
             </nav>

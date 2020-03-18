@@ -14,7 +14,62 @@
     background-color: rgb(44, 103, 107);
 }
 
+.ui.segment {
+    margin: 0 auto;
+}
+
 #one {
     font-family: cursive;
     font-size: 1.3em;
+}
+
+span.icon:before {
+    font-family: FontAwesome;
+    content: \f003;
+    color: grey;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.input-group-addon:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-lg>.input-group-addon {
+    height: 35px;
+    padding: 10px 16px;
+    line-height: 1.33;
+    border-radius: 10px 4px 4px 10px;
+    background-color: rgb(186, 196, 196);
+}
+
+.input-group-addon {
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    border-color: #eee;
+    border: 1px solid #ccc;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+    background-color: ;
+}
+
+.fa.fa-lock {
+    transform: scale(1.5);
+}
+
+.fa.fa-envelope {
+    transform: scale(1.2);
 }
