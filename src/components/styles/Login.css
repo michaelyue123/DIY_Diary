@@ -5,9 +5,10 @@
 }
 
 .ui.container {
-    margin-top: 100px;
+    margin-top: 10px;
     width: 30%;
-    justify-content: center;
+    position: relative;
+    background-color: white;
 }
 
 .ui.button:hover {
@@ -19,7 +20,7 @@
 }
 
 #one {
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.3em;
 }
 
@@ -63,7 +64,7 @@ span.icon:before {
     white-space: nowrap;
     vertical-align: middle;
     display: table-cell;
-    background-color: ;
+    transform: translate(0.5px, -1px);
 }
 
 .fa.fa-lock {
@@ -72,4 +73,22 @@ span.icon:before {
 
 .fa.fa-envelope {
     transform: scale(1.2);
+}
+
+.form-check {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#exampleCheck1 {
+    margin-top: 7.2px;
+}
+
+.ui.form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.margin-top {
+    margin-top: 100px;
 }
