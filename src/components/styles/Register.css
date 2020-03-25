@@ -42,8 +42,9 @@ span:hover {
 
 .form-check.form-check-inline {
     margin-bottom: 15px;
+    transform: scale(1.35);
+    margin-left: 15px;
 }
-
 
 .error {
     color:#4422db;
@@ -67,11 +68,6 @@ span:hover {
 }
 
 .form-check-label1 {
-    transform: scale(1.5);
-    margin-left: 20px;
+    margin-left: 8px;
 }
 
-.form-check-label2 {
-    transform: scale(1.5);
-    margin-left: 10px;
-}

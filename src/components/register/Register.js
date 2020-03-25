@@ -25,10 +25,10 @@ const validateForm = (errors) => {
 class Register extends Component {
   
     state = {
-        userId: null,
-        email: null,
-        password: null,
-        confirmPassword: null,
+        userId: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
         checked: false,
         errors: {
             email: '',
@@ -72,19 +72,19 @@ class Register extends Component {
         this.setState({ checked: !this.state.checked });
     }
 
+
+    onClickMonitor = (e) => {
+       e.preventDefault();
+      
+    }
+
     onFormSubmit = async (e) => {
         e.preventDefault();
-        const { email, password, confirmPassword, checked, errors, userId } = this.state;
+        const { email, password, confirmPassword, checked, errors } = this.state;
 
-        if(email !== null && password !== null && confirmPassword !== null) {
+        if(email !== '' && password !== '' && confirmPassword !== '') {
             if(validateForm(errors)) {
-                if(checked === false) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Please make sure you\'ve checked the box!',
-                    });
-                }else {
+                if(checked !== false) {
                     Swal.fire({
                         position: 'top-center',
                         icon: 'success',
@@ -93,16 +93,22 @@ class Register extends Component {
                         timer: 2000,
                     });
                     this.setState({
-                        userId: null,
-                        email: null,
-                        password: null,
-                        confirmPassword: null,
+                        userId: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
                         checked: false,
                         errors: {
                             email: '',
                             password: '',
                             confirmPassword: '',
                         },
+                    });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please make sure you\'ve checked the box!',
                     });
                 }
             }else {
@@ -129,7 +135,7 @@ class Register extends Component {
                 <h1 className="ui dividing header" id="register">Register</h1>
                 <div className="ui container">
                     <Tabs defaultActiveKey="Admin" id="uncontrolled-tab">
-                        <Tab eventKey="Admin" title={title[0]}>
+                        <Tab onClick={this.onClickMonitor} eventKey="Admin" title={title[0]}>
                             <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                 <RegAdmin 
                                     errors={errors} 
@@ -138,11 +144,11 @@ class Register extends Component {
                                 <RegSubmit onClick={this.onClick}/>
                             </form>
                         </Tab>
-                        <Tab eventKey="User" title={title[1]}>
+                        <Tab onClick={this.onClickMonitor} eventKey="User" title={title[1]}>
                             <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                 <RegUser 
                                     errors={errors} 
-                                    onInputChange={this.onInputChange} 
+                                    onInputChange={this.onInputChange}
                                 />
                                 <RegSubmit  onClick={this.onClick}/>
                             </form>

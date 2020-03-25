@@ -6,7 +6,7 @@ const RegUser = ({ errors, onInputChange }) => {
     return (
         <div>
             <div className="form-check form-check-inline">
-                <label className="form-check-label2" htmlFor="inlineRadio2"><img alt="" src={imgPath2}/>{' '}User</label>
+                <label className="form-check-label" htmlFor="inlineRadio2"><img alt="" src={imgPath2}/>{' '}User</label>
             </div>
             <CommonReg 
                 errors={errors} 
