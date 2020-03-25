@@ -5,13 +5,13 @@ import 'sweetalert2/src/sweetalert2.scss'
 import RegAdmin from './RegAdmin';
 import RegUser from './RegUser';
 import { Tabs, Tab } from 'react-bootstrap';
-
+import RegSubmit from './RegSubmit';
 
 
 const validEmailRegex =
     RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
-const validUserIdRegex = RegExp(/^[A|C][0-9]{3}$/);
+// const validUserIdRegex = RegExp(/^[A|C][0-9]{3}$/);
 
 const validateForm = (errors) => {
     let valid = true;
@@ -31,11 +31,14 @@ class Register extends Component {
         confirmPassword: null,
         checked: false,
         errors: {
-            userId: '',
             email: '',
             password: '',
-            confirmPassword: ''
-        }
+            confirmPassword: '',
+        },
+        title: [
+            'Admin',
+            'User'
+        ]
     };
     
     onInputChange = async (e) => {
@@ -44,11 +47,6 @@ class Register extends Component {
         let errors = this.state.errors;
 
         switch (name) {
-            case 'userId':
-                errors.userId = validUserIdRegex.test(value)
-                    ? ''
-                    : 'Input needs to be one letter (A or C) followed by 3 numbers';
-                break;
             case 'email':
                 errors.email = validEmailRegex.test(value)
                     ? ''
@@ -71,79 +69,82 @@ class Register extends Component {
     }
 
     onClick = () => {
-        if( this.state.checked === false ) {
-            document.getElementById("sudo").innerHTML = "";
-        }else {
-            document.getElementById("sudo").innerHTML = "CheckBox needs to be checked!";
-        }
         this.setState({ checked: !this.state.checked });
     }
 
-    onFormSubmit = e => {
+    onFormSubmit = async (e) => {
         e.preventDefault();
-        const { userId, email, password, confirmPassword, checked ,errors } = this.state;
+        const { email, password, confirmPassword, checked, errors, userId } = this.state;
 
-        if(userId !== null||email !== null||password !== null||confirmPassword !== null) {
-            if(validateForm(errors)) {  
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Your registration is successful!',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-            }else{
+        if(email !== null && password !== null && confirmPassword !== null) {
+            if(validateForm(errors)) {
+                if(checked === false) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please make sure you\'ve checked the box!',
+                    });
+                }else {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Your registration is successful!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                    this.setState({
+                        userId: null,
+                        email: null,
+                        password: null,
+                        confirmPassword: null,
+                        checked: false,
+                        errors: {
+                            email: '',
+                            password: '',
+                            confirmPassword: '',
+                        },
+                    });
+                }
+            }else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please make sure details you\'ve entered are correct!',
                 });
-            }   
-        }
-
-        if(userId === null||email === null||password === null||confirmPassword === null) {
+            }
+        }else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Please fill in all required details above!',
             });
-        }else if(checked === false) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Please make sure you\'ve checked the box!',
-            });
         }
     }
 
     render() {
-        const { errors } = this.state;
+        const { errors, title } = this.state;
 
         return (
             <div>
                 <h1 className="ui dividing header" id="register">Register</h1>
                 <div className="ui container">
-                    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                        <Tab eventKey="home" title="Admin">
+                    <Tabs defaultActiveKey="Admin" id="uncontrolled-tab">
+                        <Tab eventKey="Admin" title={title[0]}>
                             <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                 <RegAdmin 
                                     errors={errors} 
                                     onInputChange={this.onInputChange} 
                                 />
-                                <RegUser 
-                                    errors={errors} 
-                                    onInputChange={this.onInputChange} 
-                                    onClick={this.onClick} 
-                                />
+                                <RegSubmit onClick={this.onClick}/>
                             </form>
                         </Tab>
-                        <Tab eventKey="profile" title="User">
+                        <Tab eventKey="User" title={title[1]}>
                             <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                 <RegUser 
                                     errors={errors} 
                                     onInputChange={this.onInputChange} 
-                                    onClick={this.onClick} 
                                 />
+                                <RegSubmit  onClick={this.onClick}/>
                             </form>
                         </Tab>
                     </Tabs>

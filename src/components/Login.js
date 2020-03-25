@@ -17,7 +17,7 @@ class Login extends Component {
     onFormSubmit = e => {
         e.preventDefault();
 
-        console.log();
+        console.log(e.target.value);
     }
 
     toggleShow = () => {
@@ -39,7 +39,7 @@ class Login extends Component {
                                     </span> 
                                     <input 
                                         type="email" 
-                                        value={e => e.target.value} 
+                                        value={this.state.email} 
                                         className="form-control"
                                         size="30"
                                         placeholder="Email address" required

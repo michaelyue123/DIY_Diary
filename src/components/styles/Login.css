@@ -9,6 +9,7 @@
     width: 30%;
     position: relative;
     background-color: white;
+    margin-left: 30px;
 }
 
 .ui.button:hover {

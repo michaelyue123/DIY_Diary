@@ -62,4 +62,16 @@ span:hover {
     text-decoration: none;
 }
 
+.form-check {
+    margin-top: 10px;
+}
 
+.form-check-label1 {
+    transform: scale(1.5);
+    margin-left: 20px;
+}
+
+.form-check-label2 {
+    transform: scale(1.5);
+    margin-left: 10px;
+}
