@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
 import './styles/Login.css';
-// import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios';
+
+const MySwal = withReactContent(Swal);
 
 class Login extends Component {
     state = {
         emailLogin: '', 
         passwordLogin: '',
-        hidden: true,
-        dummyData: [
-            {
-                id: 1,
-                emailLogin: 'michaelyue123@gmail.com',
-                passwordLogin: '11111111'
-            },
-            {
-                id: 2,
-                emailLogin: 'james@gmail.com',
-                passwordLogin: '22222222'
-            },
-            {
-                id: 1,
-                emailLogin: 'williams@gmail.com',
-                passwordLogin: '12345678'
-            }
-        ] 
+        hidden: true
     };
 
     // apiUrl = '';
@@ -37,25 +24,50 @@ class Login extends Component {
     onInputChange = async e => {
         e.preventDefault();
         const { name, value } = e.target;
-        const{ emailLogin, passwordLogin } = this.state; 
 
         this.setState({
             [name]: value,
         });
-
-        console.log(emailLogin, passwordLogin);
     }
 
     // call back function
     onFormSubmit = e => {
         e.preventDefault();
+        
         const{ emailLogin, passwordLogin } = this.state; 
+        // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        const apiUrl = "https://panda-diary.herokuapp.com/login";
+
+        console.log(this.state);
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+
+        axios
+            .post(apiUrl, this.state, {
+                headers: headers
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         // Login Authentication
         if(emailLogin !== '' && passwordLogin !== '') {
-
+            MySwal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Login is successful!',
+                showConfirmButton: false,
+                timer: 1000,
+            });
         }
     }
+
 
     toggleShow = () => {
         this.setState({ hidden: !this.state.hidden });

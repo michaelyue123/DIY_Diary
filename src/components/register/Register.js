@@ -8,7 +8,7 @@ import RegSubmit from './RegSubmit';
 import { validateForm, validEmailRegex } from './RegValidate';
 import Tabs from "./tabs/Tabs";
 import glamorous from "glamorous";
-import { Tab } from 'react-bootstrap';
+// import axios from 'axios';
 
 
 const MySwal = withReactContent(Swal);
@@ -61,6 +61,8 @@ class Register extends Component {
         e.preventDefault();
         const { email, password, confirmPassword, checked, errors } = this.state;
 
+        console.log(this.state);
+
         if(email !== '' && password !== '' && confirmPassword !== '') {
             if(validateForm(errors)) {
                 if(checked !== false) {
@@ -69,7 +71,7 @@ class Register extends Component {
                         icon: 'success',
                         title: 'Your registration is successful!',
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 1000,
                     });
                     this.setState({
                         userId: '',

@@ -106,23 +106,15 @@ class Tabs extends Component {
     });
   };
 
-  onClick = tab => () => {
-    this.setState((prevState) => {
-      return {
-        prevActiveTab: prevState.activeTab,
-        activeTab: tab
-      };
+  onClick = tab => async () => {
+    await this.setState((prevState) => {
+        return {
+          prevActiveTab: prevState.activeTab,
+          activeTab: tab
+        };
     });
 
-    // console.log(this.state.tabs);
-
-    console.log(this.state.activeTab);
-
-    // if(this.state.activeTab.id === "tab1") {
-    //     console.log("Admin clicked!");
-    // }else {
-    //     console.log("User clicked!");
-    // }
+    // console.log(this.state.activeTab); Register Data Authentication
   };
 
   render() {
