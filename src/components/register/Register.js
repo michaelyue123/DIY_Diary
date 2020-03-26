@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import '../styles/Register.css';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 import RegAdmin from './RegAdmin';
 import RegUser from './RegUser';
-import { Tabs, Tab } from 'react-bootstrap';
 import RegSubmit from './RegSubmit';
+import { validateForm, validEmailRegex } from './RegValidate';
+import Tabs from "./tabs/Tabs";
+import glamorous from "glamorous";
+import { Tab } from 'react-bootstrap';
 
 
-const validEmailRegex =
-    RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-
-// const validUserIdRegex = RegExp(/^[A|C][0-9]{3}$/);
-
-const validateForm = (errors) => {
-    let valid = true;
-    Object.values(errors).forEach(
-        (val) => val.length > 0 &&
-            (valid = false)
-    );
-    return valid;
-}
+const MySwal = withReactContent(Swal);
 
 class Register extends Component {
   
@@ -35,10 +26,6 @@ class Register extends Component {
             password: '',
             confirmPassword: '',
         },
-        title: [
-            'Admin',
-            'User'
-        ]
     };
     
     onInputChange = async (e) => {
@@ -68,15 +55,7 @@ class Register extends Component {
         this.setState({ errors, [name]: value });
     }
 
-    onClick = () => {
-        this.setState({ checked: !this.state.checked });
-    }
-
-
-    onClickMonitor = (e) => {
-       e.preventDefault();
-      
-    }
+    onClick = () => this.setState({ checked: !this.state.checked });
 
     onFormSubmit = async (e) => {
         e.preventDefault();
@@ -85,7 +64,7 @@ class Register extends Component {
         if(email !== '' && password !== '' && confirmPassword !== '') {
             if(validateForm(errors)) {
                 if(checked !== false) {
-                    Swal.fire({
+                    MySwal.fire({
                         position: 'top-center',
                         icon: 'success',
                         title: 'Your registration is successful!',
@@ -105,21 +84,21 @@ class Register extends Component {
                         },
                     });
                 }else {
-                    Swal.fire({
+                    MySwal.fire({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Please make sure you\'ve checked the box!',
                     });
                 }
             }else {
-                Swal.fire({
+                MySwal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Please make sure details you\'ve entered are correct!',
                 });
             }
         }else {
-            Swal.fire({
+            MySwal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Please fill in all required details above!',
@@ -128,31 +107,39 @@ class Register extends Component {
     }
 
     render() {
-        const { errors, title } = this.state;
+        const { errors } = this.state;
 
         return (
             <div>
                 <h1 className="ui dividing header" id="register">Register</h1>
                 <div className="ui container">
-                    <Tabs defaultActiveKey="Admin" id="uncontrolled-tab">
-                        <Tab onClick={this.onClickMonitor} eventKey="Admin" title={title[0]}>
-                            <form onSubmit={this.onFormSubmit} noValidate className="ui form">
-                                <RegAdmin 
-                                    errors={errors} 
-                                    onInputChange={this.onInputChange} 
-                                />
-                                <RegSubmit onClick={this.onClick}/>
-                            </form>
-                        </Tab>
-                        <Tab onClick={this.onClickMonitor} eventKey="User" title={title[1]}>
-                            <form onSubmit={this.onFormSubmit} noValidate className="ui form">
-                                <RegUser 
-                                    errors={errors} 
-                                    onInputChange={this.onInputChange}
-                                />
-                                <RegSubmit  onClick={this.onClick}/>
-                            </form>
-                        </Tab>
+                    <Tabs
+                        activeTab={{
+                            id: "tab1"
+                        }}
+                    >
+                        <Tabs.Tab onClick={this.onClickMonitor} id="tab1" title="Admin">
+                            <glamorous.Div padding={5}>
+                                <form onSubmit={this.onFormSubmit} noValidate className="ui form">
+                                    <RegAdmin 
+                                        errors={errors} 
+                                        onInputChange={this.onInputChange} 
+                                    />
+                                    <RegSubmit onClick={this.onClick}/>
+                                </form>
+                            </glamorous.Div>
+                        </Tabs.Tab>
+                        <Tabs.Tab onClick={this.onClickMonitor} id="tab2" title="User">
+                            <glamorous.Div padding={5}>
+                                <form onSubmit={this.onFormSubmit} noValidate className="ui form">
+                                    <RegUser 
+                                        errors={errors} 
+                                        onInputChange={this.onInputChange}
+                                    />
+                                    <RegSubmit  onClick={this.onClick}/>
+                                </form>
+                            </glamorous.Div>
+                        </Tabs.Tab>
                     </Tabs>
                 </div>
             </div>
