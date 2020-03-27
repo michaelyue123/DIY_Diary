@@ -8,9 +8,9 @@ const MySwal = withReactContent(Swal);
 
 class Login extends Component {
     state = {
-        emailLogin: '', 
-        passwordLogin: '',
-        hidden: true
+        email: '', 
+        password: '',
+        // hidden: true
     };
 
     // apiUrl = '';
@@ -34,20 +34,16 @@ class Login extends Component {
     onFormSubmit = e => {
         e.preventDefault();
         
-        const{ emailLogin, passwordLogin } = this.state; 
+        const{ email, password } = this.state;  
         // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-        const apiUrl = "https://panda-diary.herokuapp.com/login";
 
-        console.log(this.state);
+        const apiUrl = 'https://panda-diary.herokuapp.com/login';
 
-        const headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-
-        axios
-            .post(apiUrl, this.state, {
-                headers: headers
+        axios({
+            method: 'POST',
+            url: apiUrl,
+            data: JSON.stringify(this.state),
+            headers: {'Content-Type': 'application/json'}
             })
             .then(response => {
                 console.log(response)
@@ -56,8 +52,10 @@ class Login extends Component {
                 console.log(error)
             })
 
+        console.log(this.state);
+
         // Login Authentication
-        if(emailLogin !== '' && passwordLogin !== '') {
+        if(email !== '' && password !== '') {
             MySwal.fire({
                 position: 'top-center',
                 icon: 'success',
@@ -74,7 +72,7 @@ class Login extends Component {
     }
 
     render() {
-        const { emailLogin, passwordLogin, hidden } = this.state;
+        const { email, password, hidden } = this.state;
 
         return (
             <div className="margin-top">
@@ -90,8 +88,8 @@ class Login extends Component {
                                     </span> 
                                     <input 
                                         type="email" 
-                                        name="emailLogin"
-                                        value={emailLogin} 
+                                        name="email"
+                                        value={email} 
                                         className="form-control"
                                         size="30"
                                         onChange={this.onInputChange}
@@ -108,8 +106,8 @@ class Login extends Component {
                                     </span> 
                                     <input 
                                         type={hidden ? "password" : "text"} 
-                                        value={passwordLogin} 
-                                        name="passwordLogin" 
+                                        value={password} 
+                                        name="password" 
                                         className="form-control"
                                         onChange={this.onInputChange}
                                         placeholder="Password" 
