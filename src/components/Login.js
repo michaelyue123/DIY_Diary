@@ -3,6 +3,7 @@ import './styles/Login.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios';
+import qs from 'qs';
 
 const MySwal = withReactContent(Swal);
 
@@ -34,23 +35,27 @@ class Login extends Component {
     onFormSubmit = e => {
         e.preventDefault();
         
-        const{ email, password } = this.state;  
         // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-        const apiUrl = 'https://panda-diary.herokuapp.com/login';
+        console.log(this.state);
+
+        const requestBody = {
+            email: this.state.emailLogin, 
+            password:this.state.passwordLogin
+          }
 
         axios({
             method: 'POST',
             url: apiUrl,
-            data: JSON.stringify(this.state),
-            headers: {'Content-Type': 'application/json'}
-            })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            data: qs.stringify(requestBody),
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            }
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        });
 
         console.log(this.state);
 

@@ -19,7 +19,8 @@
     "react-scripts": "3.4.0",
     "semantic-ui-react": "^0.88.2",
     "sweetalert2": "^9.10.6",
-    "sweetalert2-react-content": "^3.0.1"
+    "sweetalert2-react-content": "^3.0.1",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
