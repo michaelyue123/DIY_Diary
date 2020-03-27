@@ -9,18 +9,10 @@ const MySwal = withReactContent(Swal);
 
 class Login extends Component {
     state = {
-        email: '', 
-        password: '',
+        emailLogin: '', 
+        passwordLogin: '',
         // hidden: true
     };
-
-    // apiUrl = '';
-
-    // fetch data using api from backend server
-    // componentDidMount() {
-    //     axios.get(apiUrl)
-    //     .then()
-    // }
 
     onInputChange = async e => {
         e.preventDefault();
@@ -34,14 +26,14 @@ class Login extends Component {
     // call back function
     onFormSubmit = e => {
         e.preventDefault();
-        
-        // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-        console.log(this.state);
+        const { emailLogin, passwordLogin } = this.state;
+        
+        const apiUrl = "https://panda-diary.herokuapp.com/login";
 
         const requestBody = {
-            email: this.state.emailLogin, 
-            password:this.state.passwordLogin
+            email: emailLogin, 
+            password: passwordLogin
           }
 
         axios({
@@ -52,23 +44,28 @@ class Login extends Component {
                 'Content-Type':'application/x-www-form-urlencoded'
             }
         }).then(response => {
-            console.log(response)
+            let emailReturn = response.data.returnObj.email;
+            let passwordReturn = response.data.returnObj.password;
+
+            // Login Authentication
+            if(emailLogin === emailReturn && passwordLogin === passwordReturn) {
+                MySwal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Login is successful!',
+                    showConfirmButton: false,
+                    timer: 1000,
+                });
+            }else {
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please make sure that details you\'ve entered are correct!',
+                });
+            }
         }).catch(error => {
             console.log(error)
-        });
-
-        console.log(this.state);
-
-        // Login Authentication
-        if(email !== '' && password !== '') {
-            MySwal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'Login is successful!',
-                showConfirmButton: false,
-                timer: 1000,
-            });
-        }
+        });    
     }
 
 
@@ -77,7 +74,7 @@ class Login extends Component {
     }
 
     render() {
-        const { email, password, hidden } = this.state;
+        const { emailLogin, passwordLogin, hidden } = this.state;
 
         return (
             <div className="margin-top">
@@ -93,8 +90,8 @@ class Login extends Component {
                                     </span> 
                                     <input 
                                         type="email" 
-                                        name="email"
-                                        value={email} 
+                                        name="emailLogin"
+                                        value={emailLogin} 
                                         className="form-control"
                                         size="30"
                                         onChange={this.onInputChange}
@@ -111,8 +108,8 @@ class Login extends Component {
                                     </span> 
                                     <input 
                                         type={hidden ? "password" : "text"} 
-                                        value={password} 
-                                        name="password" 
+                                        value={passwordLogin} 
+                                        name="passwordLogin" 
                                         className="form-control"
                                         onChange={this.onInputChange}
                                         placeholder="Password" 
