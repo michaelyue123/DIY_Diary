@@ -3,6 +3,7 @@ import './styles/Login.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios';
+import qs from 'qs';
 
 const MySwal = withReactContent(Swal);
 
@@ -35,26 +36,29 @@ class Login extends Component {
         e.preventDefault();
         
         const{ emailLogin, passwordLogin } = this.state; 
+        
         // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
         const apiUrl = "https://panda-diary.herokuapp.com/login";
 
         console.log(this.state);
 
-        const headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
+        const requestBody = {
+            email: this.state.emailLogin, 
+            password:this.state.passwordLogin
+          }
 
-        axios
-            .post(apiUrl, this.state, {
-                headers: headers
-            })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        axios({
+            method: 'POST',
+            url: apiUrl,
+            data: qs.stringify(requestBody),
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            }
+        }).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        });
 
         // Login Authentication
         if(emailLogin !== '' && passwordLogin !== '') {
