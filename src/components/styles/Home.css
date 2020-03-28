@@ -1,25 +1,30 @@
 .ui.home {
     text-align: center;
-    margin-top: 200px;
+    margin-top: 150px;
     color: aliceblue;
     position: relative;
     font-family: fantasy;
     font-size: 3.3em;
 }
 
+.home.wrap {
+    transform: translate(0, -80px);
+    
+}
+
 #universe {
-    width: 800px;
-    height: 40%px;
+    width: 600px;
+    height: 30%px;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: block;
     border: 5px solid rgba(0, 0, 0, 0.3);    
     transition: 1s;
+    transform: translate(0, -65px);
 }
 
 #universe:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
 #text1 {

@@ -11,7 +11,7 @@ class Login extends Component {
     state = {
         emailLogin: '', 
         passwordLogin: '',
-        // hidden: true
+        hidden: true
     };
 
     onInputChange = async e => {
@@ -34,7 +34,7 @@ class Login extends Component {
         const requestBody = {
             email: emailLogin, 
             password: passwordLogin
-          }
+        }
 
         axios({
             method: 'POST',
@@ -82,52 +82,49 @@ class Login extends Component {
         return (
             <div className="margin-top">
                 <h1 className="login">Sign in</h1>
-                <div className="ui container">
-                    <div className="ui segment col-md-16">
-                        <form onSubmit={this.onFormSubmit} className="ui form">
-                            <div className="field">
-                                <label id="one" htmlFor="email">Email</label>
-                                <div className="input-group input-group-lg">
-                                    <span className="input-group-addon">
-                                            <i className="fa fa-envelope"></i>
-                                    </span> 
-                                    <input 
-                                        type="email" 
-                                        name="emailLogin"
-                                        value={emailLogin} 
-                                        className="form-control"
-                                        size="30"
-                                        onChange={this.onInputChange}
-                                        placeholder="Email address" required
-                                    />
-                                </div>
+                <div className="ui container1">
+                    <form onSubmit={this.onFormSubmit} id="form" className="ui form">
+                        <div className="field">
+                            <label id="one" htmlFor="email">Email</label>                                
+                            <div className="input-group input-group-lg">
+                                <span className="input-group-addon">
+                                    <i className="fa fa-envelope"></i>
+                                </span> 
+                                <input 
+                                    type="email" 
+                                    name="emailLogin"
+                                    value={emailLogin} 
+                                    className="form-control"
+                                    size="30"
+                                    onChange={this.onInputChange}
+                                    placeholder="Email address" required
+                                />
                             </div>
-
-                            <div className="field">
-                                <label id="one" htmlFor="pass">Password</label>
-                                <div className="input-group input-group-lg">
-                                    <span className="input-group-addon">
-                                        <i className="fa fa-lock"></i>
-                                    </span> 
-                                    <input 
-                                        type={hidden ? "password" : "text"} 
-                                        value={passwordLogin} 
-                                        name="passwordLogin" 
-                                        className="form-control"
-                                        onChange={this.onInputChange}
-                                        placeholder="Password" 
-                                        minLength="8"
-                                        required
-                                    />
-                                </div>   
-                            </div>
-                            <div className="form-check">
-                                <input type="checkbox" onClick={this.toggleShow} className="form-check-input" id="exampleCheck1" />
-                                <label className="form-check-label" htmlFor="exampleCheck1">show password</label>
-                            </div>
-                            <button className="ui button" type="submit">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+                        <div className="field">
+                            <label id="one" htmlFor="pass">Password</label>
+                            <div className="input-group input-group-lg">
+                                <span className="input-group-addon">
+                                    <i className="fa fa-lock"></i>
+                                </span> 
+                                <input 
+                                    type={hidden ? "password" : "text"} 
+                                    value={passwordLogin} 
+                                    name="passwordLogin" 
+                                    className="form-control"
+                                    onChange={this.onInputChange}
+                                    placeholder="Password" 
+                                    minLength="8"
+                                    required
+                                />
+                            </div>   
+                        </div>
+                        <div className="form-check">
+                            <input type="checkbox" onClick={this.toggleShow} className="form-check-input" id="exampleCheck1" />
+                            <label className="form-check-label" htmlFor="exampleCheck1">show password</label>
+                        </div>
+                        <button className="ui button" type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
         );

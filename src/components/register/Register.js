@@ -9,7 +9,8 @@ import { validateForm, validEmailRegex, validUsernameRegex } from './RegValidate
 import Tabs from "./tabs/Tabs";
 import glamorous from "glamorous";
 import diaryImage from '../images/2.jpg';
-// import axios from 'axios';
+import axios from 'axios';
+import qs from 'qs';
 
 
 const MySwal = withReactContent(Swal);
@@ -76,8 +77,6 @@ class Register extends Component {
         e.preventDefault();
         const { email, password, confirmPassword, username, checked, errors, role} = this.state;
 
-        console.log(role);
-
         if(email !== '' && password !== '' && confirmPassword !== '' && username !== '') {
             if(validateForm(errors)) {
                 if(checked !== false) {
@@ -126,6 +125,28 @@ class Register extends Component {
                 text: 'Please fill in all required details above!',
             });
         }
+
+        const requestBody = {
+            role: role,
+            name: username,
+            email: email, 
+            password: password,
+        }
+
+        const apiUrl = 'https://panda-diary.herokuapp.com/register';
+
+        axios({
+            method: 'POST',
+            url: apiUrl,
+            data: qs.stringify(requestBody),
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            }
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error)
+        }); 
     }
 
     render() {
@@ -147,7 +168,7 @@ class Register extends Component {
                                 <img src={diaryImage} alt="diary" class="hvrbox-layer_bottom" />
                                 <div class="hvrbox-layer_top">
                                     <div class="hvrbox-text">
-                                        This intro page helps to get your familiar with this app. 
+                                        This intro page helps you get familiar with this app. 
                                         Before using it, you need to register either as Admin or User.
                                     </div>
                                 </div>

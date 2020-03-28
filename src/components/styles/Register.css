@@ -1,7 +1,7 @@
 #register {
     color: aliceblue;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 60px;
     position: relative;
 }
 
@@ -9,6 +9,15 @@
     color: black;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.3em;
+}
+
+.ui.container {
+    margin-top: 10px;
+    width: 44.5%;
+    position: relative;
+    background-color: white;
+	margin-left: 30px;
+	border-radius: 20px;
 }
 
 #container {
@@ -37,7 +46,7 @@ span:hover {
 
 .form-check-input {
     transform: scale(1.25);
-    margin-top: 7.8px;
+    margin-top: 4.5px;
 }
 
 .form-check.form-check-inline {
@@ -48,7 +57,7 @@ span:hover {
 
 .error {
     color:#4422db;
-    font-size: 1em;
+    font-size: 1.5vw;
     display: inline;
 }
 
@@ -112,8 +121,9 @@ span:hover {
 }
 .hvrbox .hvrbox-text {
 	text-align: center;
-    font-size: 1.3em;
-    font-family: fantasy;
+    font-size: 2vw;
+	font-family: fantasy;
+	line-height: 4vw;
 	display: inline-block;
 	position: absolute;
 	top: 50%;

@@ -4,21 +4,22 @@
     position: relative;
 }
 
-.ui.container {
-    margin-top: 10px;
-    width: 35%;
+.ui.container1 {
+    width: 30%;
     position: relative;
     background-color: white;
-    margin-left: 30px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
 }
 
 .ui.button:hover {
     background-color: rgb(44, 103, 107);
 }
 
-/* .ui.segment {
-    margin: 0 auto;
-} */
+#form {
+    margin: 20px;
+}
 
 #one {
     font-family: 'Times New Roman', Times, serif;
@@ -91,7 +92,7 @@ span.icon:before {
 }
 
 .margin-top {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 
