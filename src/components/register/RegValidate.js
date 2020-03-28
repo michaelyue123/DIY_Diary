@@ -2,7 +2,7 @@
 const validEmailRegex =
     RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
-// const validUserIdRegex = RegExp(/^[A|C][0-9]{3}$/);
+const validUsernameRegex = RegExp(/^[A-Z][A-Za-z]+( [A-Za-z]+)+$/);
 
 const validateForm = (errors) => {
     let valid = true;
@@ -13,4 +13,4 @@ const validateForm = (errors) => {
     return valid;
 }
 
-export { validEmailRegex, validateForm };
+export { validEmailRegex, validateForm, validUsernameRegex };

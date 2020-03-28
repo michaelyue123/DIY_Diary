@@ -56,18 +56,21 @@ class Login extends Component {
                     showConfirmButton: false,
                     timer: 1000,
                 });
+
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500); 
             }else {
                 MySwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Please make sure that details you\'ve entered are correct!',
+                    text: 'Please make sure details you\'ve entered are correct!',
                 });
             }
         }).catch(error => {
             console.log(error)
         });    
     }
-
 
     toggleShow = () => {
         this.setState({ hidden: !this.state.hidden });

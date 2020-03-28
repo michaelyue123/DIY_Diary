@@ -5,9 +5,10 @@ import withReactContent from 'sweetalert2-react-content'
 import RegAdmin from './RegAdmin';
 import RegUser from './RegUser';
 import RegSubmit from './RegSubmit';
-import { validateForm, validEmailRegex } from './RegValidate';
+import { validateForm, validEmailRegex, validUsernameRegex } from './RegValidate';
 import Tabs from "./tabs/Tabs";
 import glamorous from "glamorous";
+import diaryImage from '../images/2.jpg';
 // import axios from 'axios';
 
 
@@ -16,12 +17,14 @@ const MySwal = withReactContent(Swal);
 class Register extends Component {
   
     state = {
-        userId: '',
+        role: '',
+        username: '',
         email: '',
         password: '',
         confirmPassword: '',
         checked: false,
         errors: {
+            username: '',
             email: '',
             password: '',
             confirmPassword: '',
@@ -49,21 +52,33 @@ class Register extends Component {
                     ? 'Password entered is inconsistent with previous input!'
                     : '';
                 break;
+            case 'username':
+                errors.username = validUsernameRegex.test(value)
+                    ? ''
+                    : 'Please enter alphabetical character with first letter uppercase!';
+                break;
             default:
                 break;
         }
-        this.setState({ errors, [name]: value });
+        await this.setState({ errors, [name]: value });
     }
 
     onClick = () => this.setState({ checked: !this.state.checked });
 
+    // pass data from child to parent
+    onRoleChange = async (childRole) => {
+        await this.setState({ role: childRole });
+
+        console.log("call back " + this.state.role);
+    }
+
     onFormSubmit = async (e) => {
         e.preventDefault();
-        const { email, password, confirmPassword, checked, errors } = this.state;
+        const { email, password, confirmPassword, username, checked, errors, role} = this.state;
 
-        console.log(this.state);
+        console.log(role);
 
-        if(email !== '' && password !== '' && confirmPassword !== '') {
+        if(email !== '' && password !== '' && confirmPassword !== '' && username !== '') {
             if(validateForm(errors)) {
                 if(checked !== false) {
                     MySwal.fire({
@@ -73,8 +88,12 @@ class Register extends Component {
                         showConfirmButton: false,
                         timer: 1000,
                     });
+                    // setTimeout(function() {
+                    //     window.location.reload();
+                    // }, 1500);  
+
                     this.setState({
-                        userId: '',
+                        username: '',
                         email: '',
                         password: '',
                         confirmPassword: '',
@@ -82,6 +101,7 @@ class Register extends Component {
                         errors: {
                             email: '',
                             password: '',
+                            username: '',
                             confirmPassword: '',
                         },
                     });
@@ -117,10 +137,24 @@ class Register extends Component {
                 <div className="ui container">
                     <Tabs
                         activeTab={{
-                            id: "tab1"
+                            id: "0"
                         }}
+                        onRoleChange={this.onRoleChange}
                     >
-                        <Tabs.Tab onClick={this.onClickMonitor} id="tab1" title="Admin">
+                        <Tabs.Tab id="0" title="Intro">
+                            <glamorous.Div>
+                            <div class="hvrbox">
+                                <img src={diaryImage} alt="diary" class="hvrbox-layer_bottom" />
+                                <div class="hvrbox-layer_top">
+                                    <div class="hvrbox-text">
+                                        This intro page helps to get your familiar with this app. 
+                                        Before using it, you need to register either as Admin or User.
+                                    </div>
+                                </div>
+                            </div>
+                            </glamorous.Div>
+                        </Tabs.Tab>
+                        <Tabs.Tab id="1" title="Admin">
                             <glamorous.Div padding={5}>
                                 <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                     <RegAdmin 
@@ -131,7 +165,7 @@ class Register extends Component {
                                 </form>
                             </glamorous.Div>
                         </Tabs.Tab>
-                        <Tabs.Tab onClick={this.onClickMonitor} id="tab2" title="User">
+                        <Tabs.Tab id="2" title="User">
                             <glamorous.Div padding={5}>
                                 <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                     <RegUser 

@@ -4,6 +4,20 @@ import '../styles/Register.css';
 const CommonReg = ({ errors, onInputChange }) => {
     return (
         <div>
+            <div className="field">
+                <label htmlFor="username" id="text">Username</label>
+                <div className="ui input">
+                    <input
+                        type="text"
+                        onChange={onInputChange}
+                        name="username"
+                        placeholder='Username'
+                        required
+                    />
+                 </div>
+                {errors.username.length > 0 &&
+                    <span className="error">{errors.username}</span>}
+            </div>
              <div className="field">
                 <label htmlFor="email" id="text">Email</label>
                 <div className="ui input">
