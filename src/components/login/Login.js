@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/Login.css';
+import '../styles/Login.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios';

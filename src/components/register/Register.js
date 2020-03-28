@@ -69,8 +69,6 @@ class Register extends Component {
     // pass data from child to parent
     onRoleChange = async (childRole) => {
         await this.setState({ role: childRole });
-
-        console.log("call back " + this.state.role);
     }
 
     onFormSubmit = async (e) => {
@@ -87,9 +85,9 @@ class Register extends Component {
                         showConfirmButton: false,
                         timer: 1000,
                     });
-                    // setTimeout(function() {
-                    //     window.location.reload();
-                    // }, 1500);  
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);  
 
                     this.setState({
                         username: '',
@@ -125,14 +123,12 @@ class Register extends Component {
                 text: 'Please fill in all required details above!',
             });
         }
-
         const requestBody = {
             role: role,
             name: username,
             email: email, 
             password: password,
         }
-
         const apiUrl = 'https://panda-diary.herokuapp.com/register';
 
         axios({

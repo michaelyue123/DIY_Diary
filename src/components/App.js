@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import NavBar from './NavBar';
 import Home from './Home';
 import Register from './register/Register';
-import Login from './Login';
+import Login from './login/Login';
 
 
 class App extends React.Component {
