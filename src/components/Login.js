@@ -45,10 +45,12 @@ class Login extends Component {
             }
         }).then(response => {
             let emailReturn = response.data.returnObj.email;
-            let passwordReturn = response.data.returnObj.password;
+            // let passwordReturn = response.data.returnObj.password;
+
+            console.log(response);
 
             // Login Authentication
-            if(emailLogin === emailReturn && passwordLogin === passwordReturn) {
+            if(emailLogin === emailReturn) {
                 MySwal.fire({
                     position: 'top-center',
                     icon: 'success',
@@ -56,7 +58,6 @@ class Login extends Component {
                     showConfirmButton: false,
                     timer: 1000,
                 });
-
                 setTimeout(function() {
                     window.location.reload();
                 }, 1500); 

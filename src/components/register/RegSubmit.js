@@ -19,7 +19,7 @@ const RegSubmit = ({ onClick }) => {
             </div>
 
             <div className="container signin">
-                <p id="text">Already have an account? <Link to="/Login">Sign in</Link>.</p>
+                <p id="text">Already have an account? <Link to="/Login">Sign in</Link></p>
             </div>
         </div>
     );
