@@ -20,11 +20,11 @@
     display: block;
     border: 5px solid rgba(0, 0, 0, 0.3);    
     transition: 1s;
-    transform: translate(0, -65px);
+    transform: translate(0, -40px);
 }
 
 #universe:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
 #text1 {

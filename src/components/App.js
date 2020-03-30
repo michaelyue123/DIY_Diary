@@ -4,21 +4,26 @@ import NavBar from './NavBar';
 import Home from './Home';
 import Register from './register/Register';
 import Login from './login/Login';
+import Content from './content/Content';
+import PageNotFound from './PageNotFound';
+import ProtectedRoute from './ProtectedRoute';
 
 
 class App extends React.Component {
     render() {
         return (
-            <Router>
-                <div>
+            <Router>   
+                <div> 
                     <NavBar />
                     <Switch>
-                        <Route exact path="/Home" component={Home} />
-                        <Route exact path="/Register" component={Register} />
-                        <Route exact path="/Login" component={Login} />
-                    </Switch>
-                </div>
-            </Router>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/login" component={Login} />
+                        <ProtectedRoute exact path="/content" component={Content} />
+                        <Route path='*' component={PageNotFound} />
+                    </Switch> 
+                </div> 
+            </Router>   
         );
     }
 }

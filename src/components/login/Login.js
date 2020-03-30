@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios';
 import qs from 'qs';
+import { Link, Redirect } from 'react-router-dom';
+
 
 const MySwal = withReactContent(Swal);
 
@@ -11,7 +13,8 @@ class Login extends Component {
     state = {
         emailLogin: '', 
         passwordLogin: '',
-        hidden: true
+        hidden: true,
+        isauthenticated: false
     };
 
     onInputChange = async e => {
@@ -36,6 +39,14 @@ class Login extends Component {
             password: passwordLogin
         }
 
+        // if(emailLogin ==='' && passwordLogin ==='') {
+        //     MySwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Please fill in all the details!',
+        //     });
+        // }
+
         axios({
             method: 'POST',
             url: apiUrl,
@@ -45,9 +56,6 @@ class Login extends Component {
             }
         }).then(response => {
             let emailReturn = response.data.returnObj.email;
-            // let passwordReturn = response.data.returnObj.password;
-
-            console.log(response);
 
             // Login Authentication
             if(emailLogin === emailReturn) {
@@ -58,9 +66,7 @@ class Login extends Component {
                     showConfirmButton: false,
                     timer: 1000,
                 });
-                setTimeout(function() {
-                    window.location.reload();
-                }, 1500); 
+                this.setState({ isauthenticated: true });
             }else {
                 MySwal.fire({
                     icon: 'error',
@@ -78,7 +84,13 @@ class Login extends Component {
     }
 
     render() {
-        const { emailLogin, passwordLogin, hidden } = this.state;
+        const { emailLogin, passwordLogin, hidden, isauthenticated } = this.state;
+
+        if(isauthenticated === true) {
+            return (
+                <Redirect to='/content' />
+            );
+        }
 
         return (
             <div className="margin-top">
@@ -120,11 +132,15 @@ class Login extends Component {
                                 />
                             </div>   
                         </div>
-                        <div className="form-check">
-                            <input type="checkbox" onClick={this.toggleShow} className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">show password</label>
+                        <div>
+                            <div className="form-check">
+                                <input type="checkbox" onClick={this.toggleShow} className="form-check-input" id="exampleCheck1" />
+                                <label className="form-check-label" htmlFor="exampleCheck1">show password</label>
+                            </div>
+                            <button className="ui button" type="submit">
+                                <Link to="/content">Sign in</Link>
+                            </button>
                         </div>
-                        <button className="ui button" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
