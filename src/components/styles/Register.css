@@ -13,7 +13,7 @@
 
 .ui.container {
     margin-top: 10px;
-    width: 44.5%;
+    width: 35%;
     position: relative;
     background-color: white;
 	margin-left: 30px;
@@ -57,7 +57,7 @@ span:hover {
 
 .error {
     color:#4422db;
-    font-size: 1.5vw;
+    font-size: 1.1vw;
     display: inline;
 }
 
@@ -123,7 +123,7 @@ span:hover {
 	text-align: center;
     font-size: 2vw;
 	font-family: fantasy;
-	line-height: 4vw;
+	line-height: 3.6vw;
 	display: inline-block;
 	position: absolute;
 	top: 50%;

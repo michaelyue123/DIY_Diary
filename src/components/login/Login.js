@@ -9,12 +9,13 @@ import { Link, Redirect } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal);
 
+
 class Login extends Component {
     state = {
         emailLogin: '', 
         passwordLogin: '',
         hidden: true,
-        isauthenticated: false
+        isLoggedIn: false
     };
 
     onInputChange = async e => {
@@ -30,7 +31,7 @@ class Login extends Component {
     onFormSubmit = e => {
         e.preventDefault();
 
-        const { emailLogin, passwordLogin } = this.state;
+        const { emailLogin, passwordLogin, isLoggedIn } = this.state;
         
         const apiUrl = "https://panda-diary.herokuapp.com/login";
 
@@ -46,7 +47,6 @@ class Login extends Component {
         //         text: 'Please fill in all the details!',
         //     });
         // }
-
         axios({
             method: 'POST',
             url: apiUrl,
@@ -55,7 +55,8 @@ class Login extends Component {
                 'Content-Type':'application/x-www-form-urlencoded'
             }
         }).then(response => {
-            let emailReturn = response.data.returnObj.email;
+            console.log(response);
+            let emailReturn = response.data.returnObj.email; 
 
             // Login Authentication
             if(emailLogin === emailReturn) {
@@ -66,7 +67,9 @@ class Login extends Component {
                     showConfirmButton: false,
                     timer: 1000,
                 });
-                this.setState({ isauthenticated: true });
+                this.setState({ isLoggedIn: true });
+
+                this.props.onLoginChange(isLoggedIn);
             }else {
                 MySwal.fire({
                     icon: 'error',
@@ -84,13 +87,7 @@ class Login extends Component {
     }
 
     render() {
-        const { emailLogin, passwordLogin, hidden, isauthenticated } = this.state;
-
-        if(isauthenticated === true) {
-            return (
-                <Redirect to='/content' />
-            );
-        }
+        const { emailLogin, passwordLogin, hidden, isLoggedIn } = this.state;
 
         return (
             <div className="margin-top">

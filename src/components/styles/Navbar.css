@@ -6,3 +6,9 @@ h5 {
 .navbar.navbar-expand-lg.navbar-dark.bg-dark {
     position: relative;
 }
+
+.navbar-brand {
+    font-family: fantasy;
+    font-style: italic;
+    font-size: 1.2em;
+}

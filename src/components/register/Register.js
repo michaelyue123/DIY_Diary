@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/Register.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
-import RegAdmin from './RegAdmin';
+// import RegAdmin from './RegAdmin';
 import RegUser from './RegUser';
 import RegSubmit from './RegSubmit';
 import { validateForm, validEmailRegex, validUsernameRegex } from './RegValidate';
@@ -160,18 +160,18 @@ class Register extends Component {
                     >
                         <Tabs.Tab id="0" title="Intro">
                             <glamorous.Div>
-                            <div class="hvrbox">
-                                <img src={diaryImage} alt="diary" class="hvrbox-layer_bottom" />
-                                <div class="hvrbox-layer_top">
-                                    <div class="hvrbox-text">
+                            <div className="hvrbox">
+                                <img src={diaryImage} alt="diary" className="hvrbox-layer_bottom" />
+                                <div className="hvrbox-layer_top">
+                                    <div className="hvrbox-text">
                                         This intro page helps you get familiar with this app. 
-                                        Before using it, you need to register either as Admin or User.
+                                        Before using it, you need to register as an User.
                                     </div>
                                 </div>
                             </div>
                             </glamorous.Div>
                         </Tabs.Tab>
-                        <Tabs.Tab id="1" title="Admin">
+                        {/* <Tabs.Tab id="1" title="Admin">
                             <glamorous.Div padding={5}>
                                 <form onSubmit={this.onFormSubmit} noValidate className="ui form">
                                     <RegAdmin 
@@ -181,7 +181,7 @@ class Register extends Component {
                                     <RegSubmit onClick={this.onClick}/>
                                 </form>
                             </glamorous.Div>
-                        </Tabs.Tab>
+                        </Tabs.Tab> */}
                         <Tabs.Tab id="2" title="User">
                             <glamorous.Div padding={5}>
                                 <form onSubmit={this.onFormSubmit} noValidate className="ui form">
