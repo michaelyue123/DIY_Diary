@@ -44,7 +44,7 @@ class Register extends Component {
                     : 'Email is not valid';
                 break;
             case 'password':
-                errors.password = value.length < 8
+                 errors.password = value.length < 8
                     ? 'Password must be 8 characters long!'
                     : '';
                 break;
@@ -60,9 +60,9 @@ class Register extends Component {
                 break;
             default:
                 break;
+            }
+            await this.setState({ errors, [name]: value });
         }
-        await this.setState({ errors, [name]: value });
-    }
 
     onClick = () => this.setState({ checked: !this.state.checked });
 
