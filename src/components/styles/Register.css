@@ -13,7 +13,8 @@
 
 .ui.container {
     margin-top: 10px;
-    width: 35%;
+	width: 50%;
+	height: auto;
     position: relative;
     background-color: white;
 	margin-left: 30px;
@@ -121,9 +122,9 @@ span:hover {
 }
 .hvrbox .hvrbox-text {
 	text-align: center;
-    font-size: 2vw;
+    font-size: 2.5vw;
 	font-family: fantasy;
-	line-height: 3.6vw;
+	line-height: 4.5vw;
 	display: inline-block;
 	position: absolute;
 	top: 50%;

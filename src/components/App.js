@@ -9,35 +9,10 @@ import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import { CookiesProvider } from 'react-cookie';
 import { withCookies } from 'react-cookie';
+import { Profile } from './content/Profile';
 
-
-
-// const MyContext = React.createContext();
-
-// // provider component
-// class MyProvider extends Component {
-//     state = {
-//         isLoggedIn: false,
-
-//     }
-//     render() {
-//         return (
-//             <MyContext.Provider value={{
-//                 state: this.state
-//             }}>
-//                 {this.props.children}
-//             </MyContext.Provider>
-//         );
-//     }
-// }
 
 class App extends React.Component {
-
-    // update parent's data via callback function is child
-    // onLoginChange= async (isLoggedin) => {
-    //     await this.setState({ isLoggedi: isLoggedin});
-    // }
-
     render() {
         return (
             <CookiesProvider>
@@ -48,11 +23,12 @@ class App extends React.Component {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />
-                            <ProtectedRoute 
+                            <Route 
                                 exact 
                                 path="/content" 
                                 render={() => (<Content cookies={this.props.cookies} />)} 
                             />
+                            <Route path="/profile" component={Profile} />
                             <Route path='*' component={PageNotFound} />
                         </Switch> 
                     </div> 

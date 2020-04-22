@@ -34,3 +34,14 @@
     font-size: 3.3em;
     text-align: center;
 }
+
+.carousel {
+    position: relative;
+    width: 58%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.d-block.w-100 {
+    border-radius: 15px;
+}
