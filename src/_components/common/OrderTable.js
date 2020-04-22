@@ -3,6 +3,7 @@ import '../styles/OrderTable.css'
 import axios from 'axios';
 import qs from 'qs';
 import DataTable, { createTheme } from 'react-data-table-component';
+import { connect } from 'react-redux';
 
 const columns = [
     { name: 'Order ID', selector: 'id', sortable: true, right: true },
@@ -22,7 +23,6 @@ class OrderTable extends Component{
 
     constructor(props){
         super(props);
-        console.log(props.count);
         this.state = {
             orders:[],
             loading: true
@@ -38,7 +38,7 @@ class OrderTable extends Component{
         const apiUrl = "https://panda-diary.herokuapp.com/order/getOrderHistory";
 
         const requestBody = {
-            userId: this.props.userId, 
+            userId: this.props.user.id, 
             number: this.props.count
         }
 
@@ -78,4 +78,8 @@ class OrderTable extends Component{
 
 }
 
-export default OrderTable;
+const mapStateToProps = (state) => ({
+    user: state.authentication.user
+});
+
+export default connect(mapStateToProps)(OrderTable);

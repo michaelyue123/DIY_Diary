@@ -14,7 +14,7 @@ class AdminHome extends Component {
                     <h1 className="content text-center">Admin Homepage</h1>
                     <div className="content" id="orderListDiv">
                         <div>
-                            <OrderTable userId="a0001" count={-1}/>
+                            <OrderTable count={-1}/>
                         </div>
 
                     </div>

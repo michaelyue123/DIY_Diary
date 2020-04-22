@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './styles/admin/AdminNavbar.css';
+import '../styles/admin/AdminNavbar.css';
 import { Link } from 'react-router-dom';
+import Logout from '../common/Logout';
 
 const AdminNavbar = () =>  {
     return(
-        <div className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
             <div className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a className="navbar-brand" href="/">Panda Diary <br></br>Management System</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +25,9 @@ const AdminNavbar = () =>  {
                     </div>
                 </div>
             </div>
+            {
+                localStorage.getItem('user')? <Logout /> : <div></div>
+            }
         </div>
     );
 }

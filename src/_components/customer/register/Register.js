@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/Register.css';
+import '../../styles/Register.css';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 import RegAdmin from './RegAdmin';
@@ -8,7 +8,7 @@ import RegSubmit from './RegSubmit';
 import { validateForm, validEmailRegex, validUsernameRegex } from './RegValidate';
 import Tabs from "./tabs/Tabs";
 import glamorous from "glamorous";
-import diaryImage from '../images/2.jpg';
+import diaryImage from '../../images/2.jpg';
 import axios from 'axios';
 import qs from 'qs';
 
