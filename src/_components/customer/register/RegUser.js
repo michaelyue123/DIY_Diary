@@ -1,14 +1,14 @@
 import React from 'react';
-import imgPath1 from '../images/admin.png';
 import CommonReg from './CommonReg';
+import imgPath2 from '../../images/user.png';
 
-const RegAdmin = ({ errors, onInputChange }) => {
+const RegUser = ({ errors, onInputChange }) => {
     return (
         <div>
             <div className="form-check form-check-inline">
-                <label className="form-check-label1" htmlFor="inlineRadio1"><img alt="" src={imgPath1} />{' '}Administrator</label>
+                <label className="form-check-label" htmlFor="inlineRadio2"><img alt="" src={imgPath2}/>{' '}User</label>
             </div>
-             <CommonReg 
+            <CommonReg 
                 errors={errors} 
                 onInputChange={onInputChange} 
             />
@@ -16,4 +16,4 @@ const RegAdmin = ({ errors, onInputChange }) => {
     );
 }
 
-export default RegAdmin;
+export default RegUser;

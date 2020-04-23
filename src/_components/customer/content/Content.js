@@ -1,7 +1,7 @@
-import React from 'react'
-import '../styles/Profile/Content.css';
+import '../../styles/profile/Content.css';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
 
 const Content = () => {
     return (
