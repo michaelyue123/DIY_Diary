@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import '../../styles/Register.css';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content'
-// import RegAdmin from './RegAdmin';
 import RegUser from './RegUser';
 import RegSubmit from './RegSubmit';
 import { validateForm, validEmailRegex, validUsernameRegex } from './RegValidate';
 import Tabs from "./tabs/Tabs";
 import glamorous from "glamorous";
 import diaryImage from '../../images/2.jpg';
-import axios from 'axios';
-import qs from 'qs';
-
-
-const MySwal = withReactContent(Swal);
+import { userActions, alertActions } from '../../../_actions';
+import { connect } from 'react-redux';
 
 class Register extends Component {
   
@@ -77,76 +72,36 @@ class Register extends Component {
 
         if(email !== '' && password !== '' && confirmPassword !== '' && username !== '') {
             if(validateForm(errors)) {
-                if(checked !== false) {
-                    MySwal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'Your registration is successful!',
-                        showConfirmButton: false,
-                        timer: 1000,
-                    });
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1500);  
-
-                    this.setState({
-                        username: '',
-                        email: '',
-                        password: '',
-                        confirmPassword: '',
-                        checked: false,
-                        errors: {
-                            email: '',
-                            password: '',
-                            username: '',
-                            confirmPassword: '',
-                        },
-                    });
+                if(checked) {
+                    this.props.register(role?role:2, username, email, password);
                 }else {
-                    MySwal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Please make sure you\'ve checked the box!',
-                    });
+                    this.props.waringAlert("Oops...", 'Please make sure you\'ve checked the box!')
                 }
             }else {
-                MySwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please make sure details you\'ve entered are correct!',
-                });
+                this.props.waringAlert("Oops...", 'Please make sure details you\'ve entered are correct!')
             }
         }else {
-            MySwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Please fill in all required details above!',
-            });
+            this.props.waringAlert("Oops...", 'Please fill in all required details above!')
         }
-        const requestBody = {
-            role: role,
-            name: username,
-            email: email, 
-            password: password,
-        }
-        const apiUrl = 'https://panda-diary.herokuapp.com/register';
 
-        axios({
-            method: 'POST',
-            url: apiUrl,
-            data: qs.stringify(requestBody),
-            headers: {
-                'Content-Type':'application/x-www-form-urlencoded'
-            }
-        }).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error)
-        }); 
+        
     }
 
     render() {
         const { errors } = this.state;
+        let user = this.props.user;
+        let role = this.props.role;
+        if (user){
+            if (role === 1){
+                return (
+                    <Redirect to='/admin' />
+                );
+            }else{
+                return (
+                    <Redirect to='/content' />
+                );
+            }
+        }
 
         return (
             <div>
@@ -200,4 +155,16 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const actionCreators = {
+    register: userActions.register,
+    waringAlert: alertActions.error,
+};
+
+const mapStateToProps = (state) => {
+    return{
+        user: state.authentication.user,
+        role: state.authentication.role
+    };
+}
+
+export default connect(mapStateToProps, actionCreators)(Register);

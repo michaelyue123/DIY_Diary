@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/OrderTable.css'
 import axios from 'axios';
 import qs from 'qs';
-import DataTable, { createTheme } from 'react-data-table-component';
+import DataTable from 'react-data-table-component';
 import { connect } from 'react-redux';
 
 const columns = [

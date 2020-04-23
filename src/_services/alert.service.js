@@ -5,23 +5,32 @@ const MySwal = withReactContent(Swal);
 
 export const alertService = {
     success,
-    error
+    error,
+    info
 };
 
-function success(title, message) {
+function success(title, message, showConfirmButton, timer) {
     MySwal.fire({
         position: 'top-center',
         icon: 'success',
         title: title,
         text: message,
-        showConfirmButton: false,
-        timer: 1000,
+        showConfirmButton: showConfirmButton,
+        timer: timer===0?999999:timer,
     });
 }
 
 function error(title, message) {
     MySwal.fire({
         icon: 'error',
+        title: title,
+        text: message,
+    });
+}
+
+function info(title, message) {
+    MySwal.fire({
+        icon: 'info',
         title: title,
         text: message,
     });

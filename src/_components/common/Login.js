@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
-import '../../styles/Login.css';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content'
+import '../styles/Login.css';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from '../../../_actions';
-
-
-const MySwal = withReactContent(Swal);
+import { userActions } from '../../_actions';
 
 class Login extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     state = {
         emailLogin: '', 
@@ -37,7 +28,6 @@ class Login extends Component {
         e.preventDefault();
 
         const { emailLogin, passwordLogin } = this.state;
-        console.log(emailLogin, passwordLogin);
 
         if (emailLogin && passwordLogin){
             this.props.login(emailLogin, passwordLogin);
@@ -50,17 +40,18 @@ class Login extends Component {
     }
 
     render() {
-        const { emailLogin, passwordLogin, hidden, isauthenticated } = this.state;
-        let user = JSON.parse(localStorage.getItem('user'));
+        const { emailLogin, passwordLogin, hidden } = this.state;
+        let user = this.props.user;
+        let role = this.props.role;
         if (user){
-            if(user.id.substring(0,1) == "a") {
+            if (role === 1){
                 return (
                     <Redirect to='/admin' />
                 );
             }else{
-                    return (
-                        <Redirect to='/content' />
-                    );
+                return (
+                    <Redirect to='/content' />
+                );
             }
         }
         return (
@@ -128,10 +119,11 @@ const actionCreators = {
     logout: userActions.logout
 };
 
-
-function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
+const mapStateToProps = (state) => {
+    return{
+        user: state.authentication.user,
+        role: state.authentication.role
+    };
 }
 
-export default connect(mapState, actionCreators)(Login);
+export default connect(mapStateToProps, actionCreators)(Login);

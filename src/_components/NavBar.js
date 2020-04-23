@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles/Navbar.css';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import CustomerNavbar from './customer/CustomerNavbar';
 import AdminNavbar from './admin/AdminNavbar';
 import { connect } from 'react-redux';
@@ -8,15 +8,10 @@ import { connect } from 'react-redux';
 
 class NavBar extends Component  {
 
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return (
             <Route render={(props) => {
-                if(this.props && this.props.user && this.props.user.id
-                    && this.props.user.id.substring(0,1) =="a") {
+                if(this.props && this.props.role && this.props.role === 1) {
                     return <AdminNavbar {...props} />;
                 }else {
                     return <CustomerNavbar {...props} />;
@@ -29,7 +24,8 @@ class NavBar extends Component  {
 
 const mapStateToProps = (state) =>{
     return { 
-        user: state.authentication.user 
+        user: state.authentication.user, 
+        role: state.authentication.role
     };
 }
 

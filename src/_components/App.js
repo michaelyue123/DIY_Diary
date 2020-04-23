@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, withRouter, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import NavBar from './NavBar';
 import Home from './Home';
 import Register from './customer/register/Register';
@@ -8,19 +8,20 @@ import Content from './customer/content/Content';
 import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
+import User from './admin/user/User'
+import Diary from './admin/diary/Diary'
+import Report from './admin/report/Report'
 import { connect } from 'react-redux';
 
 class App extends React.Component {
     render() {
         return (
-            
             <Router> 
                 <div> 
                     <NavBar />
                     <Switch>
                         <Route exact path="/" render={(props) => {
-                            if(this.props && this.props.authentication && this.props.authentication.user 
-                                && this.props.authentication.user.id.substring(0,1) =="a") {
+                            if(this.props && this.props.role && this.props.role === 1) {
                                 return <AdminHome {...props} />;
                             }else {
                                 return <Home {...props} />;
@@ -30,6 +31,9 @@ class App extends React.Component {
                         <Route exact path="/login" component={Login} />
                         <ProtectedRoute exact path="/content" component={Content} />
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
+                        <ProtectedRoute exact path="/admin/user" component={User} />
+                        <ProtectedRoute exact path="/admin/diary" component={Diary} />
+                        <ProtectedRoute exact path="/admin/report" component={Report} />
                         <Route path='*' component={PageNotFound} />
                     </Switch> 
                 </div> 
@@ -39,7 +43,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({ 
-    authentication: state.authentication
+    user: state.authentication.user, 
+    role: state.authentication.role
 })
 
 export default connect(mapStateToProps)(App);

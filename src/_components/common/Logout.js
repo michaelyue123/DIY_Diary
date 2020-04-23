@@ -5,10 +5,6 @@ import { userActions } from '../../_actions';
 
 class Logout extends Component{
 
-    constructor(props){
-        super(props);
-    }
-
     logout = e => {
         this.props.logout();
     }

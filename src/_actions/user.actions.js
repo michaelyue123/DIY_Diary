@@ -12,18 +12,28 @@ export const userActions = {
 
 function login(email, password) {
     return dispatch => {
-        dispatch(request({ email }));
 
         userService.login(email, password)
             .then(
                 user => { 
-                    dispatch(success(user));
-                    console.log(user);
-                    console.log(user.id.substring(0,1) == "a");
-                    if(user.id.substring(0,1) == "a"){
-                        history.push('/admin');
+
+                    if (user){
+
+                        let role = 2;
+                        if(user.id.substring(0,1) === "a"){
+                            role = 1;
+                        }
+
+                        dispatch(success(user, role));
+                        dispatch(alertActions.success("Login successfully.","", true, 1500));
+                        if(role === 1){
+                            history.push('/admin');
+                        }else{
+                            history.push('/content');
+                        }
+                        
                     }else{
-                        history.push('/content');
+                        dispatch(alertActions.error("Login failed","Please check your email and password."));
                     }
                 },
                 error => {
@@ -34,26 +44,39 @@ function login(email, password) {
     };
 
     function request(email) { return { type: userConstants.LOGIN_REQUEST, email } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    function success(user, role) { return { type: userConstants.LOGIN_SUCCESS, user, role } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
-    userService.logout();
     history.push('/');
     return { type: userConstants.LOGOUT };
 }
 
-function register(user) {
+function register(role, name, email, password) {
     return dispatch => {
-        dispatch(request(user));
 
-        userService.register(user)
+        userService.register(role, name, email, password)
             .then(
                 user => { 
-                    dispatch(success());
-                    history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
+
+                    if (user){
+
+                        let role = 2;
+                        if(user.id.substring(0,1) === "a"){
+                            role = 1;
+                        }
+
+                        dispatch(success(user, role));
+                        dispatch(alertActions.success("Registration successful.","", true, 0));
+                        if(role === 1){
+                            history.push('/admin');
+                        }else{
+                            history.push('/content');
+                        }
+                    }else{
+                        dispatch(alertActions.error("Login failed","Please check your email and password."));
+                    }
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -63,6 +86,6 @@ function register(user) {
     };
 
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
+    function success(user, role) { return { type: userConstants.REGISTER_SUCCESS, user, role } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
