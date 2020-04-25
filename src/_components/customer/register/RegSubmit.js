@@ -13,7 +13,7 @@ const RegSubmit = ({ onClick }) => {
                         onClick={onClick}
                         required
                     />
-                    By creating an account you agree to our <span>Terms & Privacy</span>.
+                    By creating an account you agree to our <span id="term">Terms & Privacy</span>.
                 </p>
                 <button type="submit" className="ui button" href="/Login">Register</button>
             </div>

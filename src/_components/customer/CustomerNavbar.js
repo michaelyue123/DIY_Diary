@@ -31,7 +31,7 @@ const CustomerNavbar = (props) =>  {
                     </nav>
                 </div>
                 {
-                    props.user? <Logout /> : <div></div>
+                    props.user ? <Logout /> : <div></div>
                 }
             </nav>
             

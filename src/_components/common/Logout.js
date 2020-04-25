@@ -5,12 +5,11 @@ import { userActions } from '../../_actions';
 
 class Logout extends Component{
 
-    logout = e => {
+    logout = () => {
         this.props.logout();
     }
 
     render(){
-
             return(
                 <div className="form-inline" id = "logout">
                     <button className="ui button" type="button" onClick={this.logout}>

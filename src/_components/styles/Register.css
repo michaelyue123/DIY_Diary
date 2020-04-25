@@ -31,14 +31,14 @@
     width: 100%;
 }
 
-span {
-    cursor:pointer;
+#term {
+    cursor: pointer;
     color:blue;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-span:hover {
-    text-decoration:underline;
+#term:hover {
+    text-decoration: underline;
 }
 
 #inline {

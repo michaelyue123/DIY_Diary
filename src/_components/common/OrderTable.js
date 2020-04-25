@@ -19,7 +19,7 @@ const columns = [
 
 const pageOptions = [15];
 
-class OrderTable extends Component{
+class OrderTable extends Component {
 
     constructor(props){
         super(props);
