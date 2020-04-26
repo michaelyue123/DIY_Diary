@@ -34,7 +34,6 @@ function register(role, name, email, password) {
         body: qs.stringify({role, name, email, password})
     };
     
-    console.log(requestOptions);
     return fetch(API_URL+"/register", requestOptions)
         .then(handleResponse)
         .then(response => {
