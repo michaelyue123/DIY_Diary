@@ -4,6 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 import DataTable from 'react-data-table-component';
 import { connect } from 'react-redux';
+import { orderActions } from '../../_actions';
 
 const columns = [
     { name: 'Order ID', selector: 'id', sortable: true, right: true },
@@ -35,28 +36,19 @@ class OrderTable extends Component {
     }
 
     receiveOrder = () =>{
-        const apiUrl = "https://panda-diary.herokuapp.com/order/getOrderHistory";
 
-        const requestBody = {
-            userId: this.props.user.id, 
-            number: this.props.count
-        }
+        let orderList = this.props.getOrders(this.props.user.id, this.props.count);
 
-        axios({
-            method: 'POST',
-            url: apiUrl,
-            data: qs.stringify(requestBody),
-            headers: {
-                'Content-Type':'application/x-www-form-urlencoded'
-            }
-        }).then(response => {
+        if (orderList){
             this.setState({
-                orders: response.data.returnObj,
+                orders: orderList,
                 loading: false
             });
-        }).catch(error => {
-            console.log(error)
-        });  
+        }else{
+            this.setState({
+                loading: false
+            });
+        }
 
     }
 
@@ -78,8 +70,13 @@ class OrderTable extends Component {
 
 }
 
+const actionCreators = {
+    getOrders: orderActions.getOrders
+};
+
+
 const mapStateToProps = (state) => ({
     user: state.authentication.user
 });
 
-export default connect(mapStateToProps)(OrderTable);
+export default connect(mapStateToProps, actionCreators)(OrderTable);

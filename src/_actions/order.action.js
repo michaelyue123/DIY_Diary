@@ -1,4 +1,5 @@
-
+import { orderService } from '../_services';
+import { alertActions } from './';
 
 export const orderActions = {
     getOrders,
@@ -7,6 +8,23 @@ export const orderActions = {
 };
 
 function getOrders(userId, number){
+
+    return dispatch => {
+
+        orderService.getOrders(userId, number)
+            .then(
+                orders => { 
+                    if (orders){
+                        return orders;
+                    }else{
+                        dispatch(alertActions.info("No Orders",""));
+                    }
+                },
+                error => {
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
     
 }
 

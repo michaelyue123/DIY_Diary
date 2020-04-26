@@ -8,23 +8,21 @@ export const orderService = {
 };
 
 
-function getOrders(userId, number) {
+async function getOrders(userId, number) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: qs.stringify({userId, number})
     };
     
-    return fetch(API_URL+"/getOrderHistory", requestOptions)
-        .then(handleResponse)
-        .then(response => {
-            let resultCode = response.resultCode;
-            if (resultCode === 0){
-                return response.returnObj;
-            }else{
-                return null;
-            }
-        });
+    const response = await fetch(API_URL + "/order/getOrderHistory", requestOptions);
+    let resultCode = response.resultCode;
+    if (resultCode === 0) {
+        return response.returnObj;
+    }
+    else {
+        return null;
+    }
 }
 
 function getOrder(userId){
