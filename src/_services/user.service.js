@@ -15,45 +15,45 @@ async function login(email, password) {
         body: qs.stringify({ email, password })
     };
 
-    return fetch(API_URL+"/login", requestOptions)
-        .then(handleResponse)
-        .then(response => {
-            let resultCode = response.resultCode;
-            if (resultCode === 0){
-                return response.returnObj;
-            }else{
-                return null;
-            }
-        });
+    const response = await fetch(API_URL + "/login", requestOptions);
+    const response_1 = await handleResponse(response);
+    let resultCode = response_1.resultCode;
+    if (resultCode === 0) {
+        return response_1.returnObj;
+    }
+    else {
+        return null;
+    }
 }
 
-function register(role, name, email, password) {
+async function register(role, name, email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: qs.stringify({role, name, email, password})
     };
     
-    return fetch(API_URL+"/register", requestOptions)
-        .then(handleResponse)
-        .then(response => {
-            let resultCode = response.resultCode;
-            if (resultCode === 0){
-                return response.returnObj;
-            }else{
-                return null;
-            }
-        });
+    console.log(requestOptions);
+    const response = await fetch(API_URL + "/register", requestOptions);
+    const response_1 = await handleResponse(response);
+    let resultCode = response_1.resultCode;
+    if (resultCode === 0) {
+        return response_1.returnObj;
+    }
+    else {
+        return null;
+    }
 }
 
-function update(user) {
+async function update(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: qs.stringify(user)
     };
 
-    return fetch(API_URL+"/users/authenticate", requestOptions).then(handleResponse);;
+    const response = await fetch(API_URL + "/users/authenticate", requestOptions);
+    return handleResponse(response);;
 }
 
 function handleResponse(response) {

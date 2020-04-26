@@ -16,7 +16,6 @@ function login(email, password) {
         userService.login(email, password)
             .then(
                 user => { 
-
                     if (user){
 
                         let role = 2;
@@ -25,7 +24,7 @@ function login(email, password) {
                         }
 
                         dispatch(success(user, role));
-                        dispatch(alertActions.success("Login successfully.","", true, 1500));
+                        dispatch(alertActions.success("Login is successful.","", true, 1500));
                         if(role === 1){
                             history.push('/admin');
                         }else{
@@ -43,14 +42,18 @@ function login(email, password) {
             );
     };
 
-    function request(email) { return { type: userConstants.LOGIN_REQUEST, email } }
+    // function request(email) { return { type: userConstants.LOGIN_REQUEST, email } }
     function success(user, role) { return { type: userConstants.LOGIN_SUCCESS, user, role } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
-    history.push('/');
-    return { type: userConstants.LOGOUT };
+    return dispatch => {
+        dispatch(success());
+        dispatch(alertActions.success("Logout is successful.","", true, 1000));
+        history.push('/'); 
+    }
+    function success() { return { type: userConstants.LOGOUT };}  
 }
 
 function register(role, name, email, password) {
@@ -85,7 +88,7 @@ function register(role, name, email, password) {
             );
     };
 
-    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
+    // function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user, role) { return { type: userConstants.REGISTER_SUCCESS, user, role } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     return (
-
         <Route {...rest} render={props => {
             let loginUser = {user};
             console.log(loginUser);

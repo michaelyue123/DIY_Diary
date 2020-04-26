@@ -4,7 +4,13 @@
     color: aliceblue;
     position: relative;
     font-family: fantasy;
-    font-size: 3.3em;
+    font-size: 3.3vw;
+    transition: 1s;
+    margin-bottom: 50px;
+}
+
+.ui.home:hover {
+    transform: scale(1.1);
 }
 
 .home.wrap {
@@ -31,13 +37,18 @@
     position: relative;
     color: aliceblue;
     font-family: fantasy;
-    font-size: 3.3em;
+    font-size: 2.8vw;
     text-align: center;
+    transition: 1s;
+}
+
+#text1:hover {
+    transform: scale(1.1);
 }
 
 .carousel {
     position: relative;
-    width: 58%;
+    width: 48%;
     height: auto;
     margin: 0 auto;
 }

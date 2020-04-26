@@ -1,9 +1,9 @@
-import '../../styles/profile/Content.css';
+import '../../styles/customer/Content.css';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import React from 'react'
 
-const Content = () => {
+export const Content = () => {
     return (
         <div>
             <dl className="dl list" id="block">
@@ -20,7 +20,7 @@ const Content = () => {
                 <dt>Address:</dt>
                 <dd>xxxxxxxxx</dd>
                 <Button className="ui button" id="personal" type="submit">
-                    <Link to="/profile"><span>Update</span></Link>
+                    <Link to="/profile"><span id="update">Update</span></Link>
                 </Button>
             </dl>
 
@@ -43,4 +43,3 @@ const Content = () => {
     )
 }
 
-export default Content;

@@ -9,8 +9,7 @@ class Login extends Component {
     state = {
         emailLogin: '', 
         passwordLogin: '',
-        hidden: true,
-        isauthenticated: false
+        hidden: true
     };
 
     onInputChange = async e => {

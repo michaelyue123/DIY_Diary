@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/Profile/Profile.css';
+import '../../styles/customer/Profile.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';

@@ -126,17 +126,6 @@ class Register extends Component {
                             </div>
                             </glamorous.Div>
                         </Tabs.Tab>
-                        {/* <Tabs.Tab id="1" title="Admin">
-                            <glamorous.Div padding={5}>
-                                <form onSubmit={this.onFormSubmit} noValidate className="ui form">
-                                    <RegAdmin 
-                                        errors={errors} 
-                                        onInputChange={this.onInputChange} 
-                                    />
-                                    <RegSubmit onClick={this.onClick}/>
-                                </form>
-                            </glamorous.Div>
-                        </Tabs.Tab> */}
                         <Tabs.Tab id="2" title="User">
                             <glamorous.Div padding={5}>
                                 <form onSubmit={this.onFormSubmit} noValidate className="ui form">
