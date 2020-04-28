@@ -7,25 +7,21 @@ export const orderActions = {
     sendOrder
 };
 
-function getOrders(userId, number){
+async function getOrders(userId, number){
 
-    return dispatch => {
-
-        orderService.getOrders(userId, number)
+    return orderService.getOrders(userId, number)
             .then(
                 orders => { 
                     if (orders){
                         return orders;
                     }else{
-                        dispatch(alertActions.info("No Orders",""));
+                        alertActions.show_info("No Orders","");
                     }
                 },
                 error => {
-                    dispatch(alertActions.error(error.toString()));
+                    alertActions.show_error(error.toString());
                 }
             );
-    };
-    
 }
 
 function getOrder(userId){

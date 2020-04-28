@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/OrderTable.css'
-import axios from 'axios';
-import qs from 'qs';
 import DataTable from 'react-data-table-component';
 import { connect } from 'react-redux';
 import { orderActions } from '../../_actions';
@@ -35,9 +33,10 @@ class OrderTable extends Component {
         this.receiveOrder();
     }
 
-    receiveOrder = () =>{
+    receiveOrder = async () =>{
 
-        let orderList = this.props.getOrders(this.props.user.id, this.props.count);
+        let orderList = await orderActions.getOrders(this.props.user.id, this.props.count);
+        console.log(orderList);
 
         if (orderList){
             this.setState({
@@ -71,7 +70,6 @@ class OrderTable extends Component {
 }
 
 const actionCreators = {
-    getOrders: orderActions.getOrders
 };
 
 

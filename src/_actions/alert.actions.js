@@ -4,7 +4,10 @@ export const alertActions = {
     success,
     error,
     info,
-    clear
+    clear,
+    show_success,
+    show_error,
+    show_info
 };
 
 function success(title, message, showConfirmButton, timer) {
@@ -21,4 +24,14 @@ function info(title, message) {
 
 function clear() {
     return { type: alertConstants.CLEAR };
+}
+
+function show_success(title, message, showConfirmButton, timer){
+    alertActions.success(title, message, showConfirmButton, timer);
+}
+function show_error(title, message){
+    alertActions.error(title, message);
+}
+function show_info(title, message){
+    alertActions.info(title, message);
 }
