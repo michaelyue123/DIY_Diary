@@ -1,6 +1,19 @@
 import { userConstants } from '../_constants';
 
-const initialState = {};
+const initialState = true ? {
+  user: {
+    id: 'c0020',
+    name: 'Test',
+    email: 'test@gmail.com',
+    password: '',
+    phone: '0410506744',
+    addressStreet: '555 Swanston St',
+    addressSuburb: 'Carlton',
+    addressPostcode: '3053',
+    addressState: 'Victoria'
+  }
+}:{};
+
 
 export function authentication(state = initialState, action) {
   switch (action.type) {

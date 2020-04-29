@@ -26,10 +26,9 @@ const actionCreators = {
     logout: userActions.logout
 };
 
-
-function mapState(state) {
+function mapStateToProps(state) {
     const { authentication } = state.authentication;
     return { authentication };
 }
 
-export default connect(mapState, actionCreators)(Logout);
+export default connect(mapStateToProps, actionCreators)(Logout);
