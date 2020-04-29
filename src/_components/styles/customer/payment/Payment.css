@@ -10,6 +10,7 @@ dt {
     margin-right: 5px;
     font-weight: bold;
     padding: 10px;
+    width:30%;
 }
   
 dd {
@@ -83,7 +84,11 @@ dd {
 }
 
 .payment_img{
-    height: 40px;
+    height: 35px;
     margin-left: 4%;
     margin-right: 4%;
+}
+
+.ui.input{
+    font-size: 0.8em;
 }

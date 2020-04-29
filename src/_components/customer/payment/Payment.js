@@ -7,6 +7,7 @@ import { commonActions } from '../../../_actions';
 import Cards from '../../../_images/credit-cards.png'
 import PayPal from '../../../_images/paypal.png'
 import '../../styles/Register.css';
+import {AUS_STATES} from '../../../_constants';
 
 class Payment extends Component{
 
@@ -16,7 +17,8 @@ class Payment extends Component{
             delivery_options:[],
             payment_options:[],
             checkout_info:{
-                payment_method: 1
+                payment_method: 1,
+                delivery_option: 1
             }
         }
         this.getOption = this.getOption.bind(this);
@@ -37,9 +39,29 @@ class Payment extends Component{
     onPaymentChanged = (e) => {
         this.setState({
             checkout_info:{
-                payment_method: parseInt(e.currentTarget.value)
+                payment_method: parseInt(e.currentTarget.value),
+                delivery_option: this.state.checkout_info.delivery_option,
             }
         });
+    }
+
+    onDeliveryChanged = (e) => {
+        this.setState({
+            checkout_info:{
+                payment_method: this.state.checkout_info.payment_method,
+                delivery_option: parseInt(e.currentTarget.value)
+            }
+        });
+    }
+
+    onStateChanged = (e) => {
+        console.log(e.currentTarget.value);
+        // this.setState({
+        //     checkout_info:{
+        //         payment_method: this.state.checkout_info.payment_method,
+        //         delivery_option: parseInt(e.currentTarget.value)
+        //     }
+        // });
     }
 
     getPaymentRadioButton = () =>{
@@ -64,7 +86,7 @@ class Payment extends Component{
                     <dt className="">
                         <span>Card Number:</span>
                     </dt>
-                    <dd className="ui input" style={{width: "70%"}}>
+                    <dd className="ui input pay_input" style={{width: "60%"}}>
                         <input
                             type="text"
                             onChange={this.onInputChange}
@@ -76,13 +98,14 @@ class Payment extends Component{
                     <dt className="">
                         <span>Expired Date:</span>
                     </dt>
-                    <dd className="ui input" style={{width: "70%"}}>
+                    <dd className="ui input pay_input" style={{width: "60%"}}>
                         <input
                             type="text"
                             onChange={this.onInputChange}
                             name="expiredDateM"
                             placeholder='MM'
                             required
+                            style={{width: "25%"}}
                         />
                         <p>/</p>
                         <input
@@ -91,12 +114,13 @@ class Payment extends Component{
                             name="expiredDateY"
                             placeholder='YY'
                             required
+                            style={{width: "25%"}}
                         />
                     </dd>
                     <dt className="">
                         <span>Security Number:</span>
                     </dt>
-                    <dd className="ui input" style={{width: "20%"}}>
+                    <dd className="ui input pay_input" style={{width: "20%"}}>
                         <input
                             type="text"
                             onChange={this.onInputChange}
@@ -128,7 +152,6 @@ class Payment extends Component{
                                                 {this.getPaymentRadioButton()}
                                             </dd>
                                             {this.getCardDetail()}
-                                            
                                         </dl>
                                     </center>
                                 </div>
@@ -139,21 +162,80 @@ class Payment extends Component{
                                             <hr id="hr" />
                                             <dt>Options:</dt>
                                             <dd>
-                                                <select>
-                                                    {this.state.delivery_options.map((option) => <option key={option.id}>{option.description}</option>)}
+                                                <select onChange={this.onDeliveryChanged}>
+                                                    {this.state.delivery_options.map((option) => <option value={option.id}>{option.description}</option>)}
                                                 </select>
-
                                             </dd>
-                                            <dt>Name:</dt>
-                                            <dd>michaelyue123@gmail.com</dd>
-                                            <dt>Phone:</dt>
-                                            <dd>xxxxxxxxx</dd>
-                                            <dt>Address:</dt>
-                                            <dd>12345678</dd>
-                                            <dt>Suburb:</dt>
-                                            <dd>xxxxxxxxx</dd>
+                                            <dt className="">
+                                                <span>Name:</span>
+                                            </dt>
+                                            <dd className="ui input pay_input" style={{width: "60%"}}>
+                                                <input
+                                                    type="text"
+                                                    onChange={this.onInputChange}
+                                                    name="name"
+                                                    placeholder='Name'
+                                                    required
+                                                    value={this.props.user.name}
+                                                />
+                                            </dd>
+                                            <dt className="">
+                                                <span>Phone:</span>
+                                            </dt>
+                                            <dd className="ui input pay_input" style={{width: "60%"}}>
+                                                <input
+                                                    type="text"
+                                                    onChange={this.onInputChange}
+                                                    name="phone"
+                                                    placeholder='Phone'
+                                                    required
+                                                    value={this.props.user.phone}
+                                                />
+                                            </dd>
+                                            <dt className="">
+                                                <span>Address:</span>
+                                            </dt>
+                                            <dd className="ui input pay_input" style={{width: "60%"}}>
+                                                <input
+                                                    type="text"
+                                                    onChange={this.onInputChange}
+                                                    name="address"
+                                                    placeholder='Address, Street'
+                                                    required
+                                                    value={this.props.user.addressStreet}
+                                                />
+                                            </dd>
+                                            <dt className="">
+                                                <span>Suburb:</span>
+                                            </dt>
+                                            <dd className="ui input pay_input" style={{width: "60%"}}>
+                                                <input
+                                                    type="text"
+                                                    onChange={this.onInputChange}
+                                                    name="suburb"
+                                                    placeholder='Suburb'
+                                                    required
+                                                    value={this.props.user.addressSurburb }
+                                                />
+                                            </dd>
+                                            <dt className="">
+                                                <span>Postal Code:</span>
+                                            </dt>
+                                            <dd className="ui input pay_input" style={{width: "60%"}}>
+                                                <input
+                                                    type="text"
+                                                    onChange={this.onInputChange}
+                                                    name="postCode"
+                                                    required
+                                                    value={this.props.user.addressPostcode}
+                                                />
+                                            </dd>
                                             <dt>State:</dt>
-                                            <dd>xxxxxxxxx</dd>
+                                            <dd>
+                                                <select onChange={this.onStateChanged}>
+                                                    {AUS_STATES.map((option) => <option selected={option === this.props.user.addressState} value={option}>{option}</option>)}
+                                                </select>
+                                            </dd>
                                         </dl>
                                     </center>
                                 </div>
@@ -164,23 +246,21 @@ class Payment extends Component{
                                         <dl className="dl list1">
                                             <h1 style={{textAlign: "center", fontFamily: "fantasy"}}>Order Summary</h1>
                                             <hr id="hr" />
-                                            <dt>Options:</dt>
+                                            <dt>Diary Title:</dt>
                                             <dd>
-                                                <select>
-                                                    {this.state.delivery_options.map((option) => <option key={option.id}>{option.description}</option>)}
-                                                </select>
-
+                                                {this.props.shoppingcart.title_on_cover}
                                             </dd>
-                                            <dt>Name:</dt>
-                                            <dd>michaelyue123@gmail.com</dd>
-                                            <dt>Phone:</dt>
-                                            <dd>xxxxxxxxx</dd>
-                                            <dt>Address:</dt>
-                                            <dd>12345678</dd>
-                                            <dt>Suburb:</dt>
-                                            <dd>xxxxxxxxx</dd>
-                                            <dt>State:</dt>
-                                            <dd>xxxxxxxxx</dd>
+                                            <dt>Paper type:</dt>
+                                            <dd>{this.props.shoppingcart.paper_type}</dd>
+                                            <dt>Paper Color:</dt>
+                                            <dd>{this.props.shoppingcart.paper_color}</dd>
+                                            <dt>Cover Color</dt>
+                                            <dd>{this.props.shoppingcart.cover_color}</dd>
+                                            <hr id="hr" />
+                                            <dt>Price:</dt>
+                                            <dd>AUD $ 20</dd>
+                                            <dt>Delivery fee:</dt>
+                                            <dd>{this.state.checkout_info.delivery_option===2? 'AUD $ 9.9':"AUD $ 0"}</dd>
                                         </dl>
                                     </center>
                                 </div>
@@ -211,8 +291,9 @@ const actionCreator = () => {
 }
 
 const mapStatesToProps = (state) => {
+    console.log(state.shoppingcart);
     return {
-        shoppingcart: state.shoppingcart,
+        shoppingcart: state.shoppingcart.diarysettings,
         user: state.authentication.user
     }
 }
