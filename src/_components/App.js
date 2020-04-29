@@ -4,8 +4,8 @@ import NavBar from './NavBar';
 import Home from './Home';
 import Register from './customer/register/Register';
 import Login from './common/Login';
-import Content from './customer/content/Content';
-import Profile from './customer/content/Profile';
+import { Content, Profile } from './customer/content/index';
+import Payment from './customer/payment/Payment';
 import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
@@ -32,6 +32,7 @@ class App extends React.Component {
                         <Route exact path="/login" component={Login} />
                         <ProtectedRoute exact path="/content" component={Content} />
                         <ProtectedRoute exact path="/profile" component={Profile} />
+                        <ProtectedRoute exact path="/payment" component={Payment} />
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
                         <ProtectedRoute exact path="/admin/user" component={User} />
                         <ProtectedRoute exact path="/admin/diary" component={Diary} />
