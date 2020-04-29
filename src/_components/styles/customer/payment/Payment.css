@@ -1,0 +1,89 @@
+#content {
+    position: relative;
+    color: aliceblue;
+    text-align: center;
+}
+
+dt {
+    float: left;
+    clear: left;
+    margin-right: 5px;
+    font-weight: bold;
+    padding: 10px;
+}
+  
+dd {
+    margin-left: 0px;
+    padding: 5px;
+    display: block;
+}
+
+.dl.list1 {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+    position: relative;
+    color: aliceblue;
+    font-size: 1vw;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+#hr {
+    border-top: 1px solid aliceblue;
+}
+
+.dl.list:hover {
+    transform: scale(1.1);
+}
+
+#reset {
+    color: black;
+    width: 15%;
+}
+
+#checkout{
+    width: 77%;
+}
+
+#checkout:hover{
+    background-color: dodgerblue;
+}
+
+#checkout:hover a{
+    color: white;
+}
+
+.pay-deli-box {
+    margin: 2%;
+}
+
+#pay-deli-box{
+    width: 48%;
+    float: left;
+    margin: 1%;
+    /* display: inline-block; */
+}
+
+#button-block {
+    display: inline-block; 
+    width: 48%;
+    text-align: right;
+    position: relative;
+    color: aliceblue;
+    font-size: 1vw;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+#order_summary{
+    width: 48%;
+    margin: 1%;
+    float: right;
+}
+
+.payment_img{
+    height: 40px;
+    margin-left: 4%;
+    margin-right: 4%;
+}

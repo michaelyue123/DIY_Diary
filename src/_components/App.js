@@ -5,7 +5,7 @@ import Home from './Home';
 import Register from './customer/register/Register';
 import Login from './common/Login';
 import { Content, Profile } from './customer/content/index';
-import Payment from './customer/content/Payment';
+import Payment from './customer/payment/Payment';
 import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
