@@ -15,6 +15,7 @@ const initialState = true?{
 }:{};
 
 export function authentication(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case userConstants.LOGIN_REQUEST:
       return {
@@ -40,9 +41,9 @@ export function authentication(state = initialState, action) {
       return {};
     case userConstants.LOGOUT:
       return {};
-    case userConstants.NAME:
+    case userConstants.UPDATE:
       return {
-        name: action.name
+        user: action.user
     };
     case userConstants.EMAIL:
       return {
