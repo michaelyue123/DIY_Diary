@@ -18,4 +18,4 @@ export function shoppingcart(state = initialState, action) {
       default:
         return state
     }
-  }
+}

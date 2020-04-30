@@ -24,11 +24,14 @@ const CustomerNavbar = (props) =>  {
                                     Sign in 
                                 </Link>  
                                 <Link className="nav-item nav-link" to="/content">
-                                    Content Page
+                                    Content
                                 </Link>   
                                 <Link className="nav-item nav-link" to="/payment">
                                     Payment
-                                </Link>   
+                                </Link>  
+                                <Link className="nav-item nav-link" to="/diary">
+                                    My Diary
+                                </Link>    
                             </div>
                         </div>
                     </nav>
