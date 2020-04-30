@@ -1,1 +1,1 @@
-# DIY_Diary
+# Panda Diary
