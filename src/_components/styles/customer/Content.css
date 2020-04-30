@@ -9,7 +9,7 @@
     position: relative;
     color: aliceblue;
     width: 38%;
-    line-height: 5vw;
+    line-height: 3.7vw;
     margin-top: 10%;
     font-size: 1.8vw;
     padding: 20px;
@@ -31,7 +31,7 @@
 
 #update {
     color: black;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
 }
 
 #personal {
