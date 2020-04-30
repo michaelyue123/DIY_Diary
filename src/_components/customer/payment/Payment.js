@@ -144,7 +144,7 @@ class Payment extends Component{
                             <div id="pay-deli-box">
                                 <div className="pay-deli-box">
                                     <center>
-                                        <dl className="dl list1">
+                                        <dl className="payment_box">
                                             <h1 style={{textAlign: "center", fontFamily: "fantasy"}}>Payment Information</h1>
                                             <hr id="hr" />
                                             <dt>Method:</dt>
@@ -157,7 +157,7 @@ class Payment extends Component{
                                 </div>
                                 <div className="pay-deli-box">
                                     <center>
-                                        <dl className="dl list1">
+                                        <dl className="payment_box">
                                             <h1 style={{textAlign: "center", fontFamily: "fantasy"}}>Delivery Information</h1>
                                             <hr id="hr" />
                                             <dt>Options:</dt>
@@ -243,7 +243,7 @@ class Payment extends Component{
                             <div id="order_summary">
                                 <div className="pay-deli-box">
                                     <center>
-                                        <dl className="dl list1">
+                                        <dl className="payment_box">
                                             <h1 style={{textAlign: "center", fontFamily: "fantasy"}}>Order Summary</h1>
                                             <hr id="hr" />
                                             <dt>Diary Title:</dt>
