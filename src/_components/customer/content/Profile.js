@@ -9,7 +9,6 @@ import { AUS_STATES, MELBOURNE_SUBURB } from '../../../_constants';
 
 class Profile extends Component {
 
-
     state = {
         name: this.props.user.name,
         email: '',
@@ -76,7 +75,7 @@ class Profile extends Component {
                             onChange={(e) => this.props.changeEmail(e.target.value)} 
                             placeholder="Street " 
                         />
-                        <Form.Control name="suburb" defaultValue={this.props.user.addressSurburb} custom="true" id="formControl" as="select" custom="true">
+                        <Form.Control name="suburb" id="formControl" as="select" custom="true">
                             {MELBOURNE_SUBURB.map((option) => <option value={option === this.props.user.addressSurburb}>{option}</option>)}
                         </Form.Control>
                         <Form.Control 
@@ -87,7 +86,7 @@ class Profile extends Component {
                             onChange={(e) => this.props.changeEmail(e.target.value)} 
                             placeholder="Postcode" 
                         />
-                        <Form.Control name="state" defaultValue={this.props.user.addressState} id="formControl" as="select" custom="true">
+                        <Form.Control name="state" id="formControl" as="select" custom="true">
                             {AUS_STATES.map((option) => <option value={option === this.props.user.addressState}>{option}</option>)}
                         </Form.Control>
                     </Form.Group>
