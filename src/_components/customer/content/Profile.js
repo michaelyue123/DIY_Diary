@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/customer/Profile.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userConstants } from '../../../_constants/';
 import { AUS_STATES, MELBOURNE_SUBURB } from '../../../_constants';
@@ -98,9 +98,9 @@ class Profile extends Component {
                             onChange={(e)=> this.onInputChange(e, 'suburb')} 
                             placeholder="Street" 
                         />
-                        {/* <Form.Control name="suburb" defaultValue={this.props.user.addressSurburb} custom="true" id="formControl" as="select" custom="true">
+                        <Form.Control name="suburb" value={this.props.user.addressSurburb} custom="true" id="formControl" as="select" custom="true">
                             {MELBOURNE_SUBURB.map((option) => <option value={option === this.props.user.addressSurburb}>{option}</option>)}
-                        </Form.Control> */}
+                        </Form.Control>
                         <Form.Control 
                             id="formControl" 
                             value={this.state.addressPostcode} 
@@ -115,9 +115,9 @@ class Profile extends Component {
                     </Form.Group>
 
                     <Button className="ui button" id="profile" type="button" onClick={this.onSubmitUpdate}>
-                        {/* <Link to="/content"> */}
+                        <Link to="/content">
                             <span id="update">Save</span>
-                        {/* </Link> */}
+                        </Link>
                     </Button>
                 </Form>
             </div>

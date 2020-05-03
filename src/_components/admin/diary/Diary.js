@@ -5,7 +5,7 @@ class Diary extends Component{
     render(){
         return(
             <div class="text-center">
-                <h1 id="content">Diary</h1>
+                <h1 id="content"></h1>
             </div>
         );
     }
