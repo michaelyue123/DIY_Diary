@@ -19,6 +19,16 @@ class Payment extends Component{
             checkout_info:{
                 payment_method: 1,
                 delivery_option: 1
+            },
+            user:{
+                id: this.props.user.id,
+                name: this.props.user.name,
+                email: this.props.user.email,
+                phone: this.props.user.phone,
+                addressStreet: this.props.user.addressStreet,
+                addressSurburb: this.props.user.addressSurburb,
+                addressPostcode: this.props.user.addressPostcode,
+                addressState: this.props.user.addressState
             }
         }
         this.getOption = this.getOption.bind(this);
@@ -54,29 +64,31 @@ class Payment extends Component{
         });
     }
 
-    onStateChanged = (e) => {
-        console.log(e.currentTarget.value);
-        // this.setState({
-        //     checkout_info:{
-        //         payment_method: this.state.checkout_info.payment_method,
-        //         delivery_option: parseInt(e.currentTarget.value)
-        //     }
-        // });
-    }
-
     getPaymentRadioButton = () =>{
         return this.state.payment_options.map((option)=>
-        <>
-            <input type="radio" name="site_name" 
-                value={option.id} 
-                checked={this.state.checkout_info.payment_method === option.id} 
-                onChange={this.onPaymentChanged} /><span>{option.id == 1?<img src={PayPal} className="payment_img" />:<img src={Cards} className="payment_img" />}</span>
-        </>
+            <>
+                <input type="radio" name="site_name" 
+                    value={option.id} 
+                    checked={this.state.checkout_info.payment_method === option.id} 
+                    onChange={this.onPaymentChanged} /><span>{option.id == 1?<img src={PayPal} className="payment_img" />:<img src={Cards} className="payment_img" />}</span>
+            </>
         );
     }
 
-    onInputChange = (e) => {
-
+    onInputChange = async (e, symbol) => {
+        e.preventDefault();
+        await this.setState({ 
+            user: {
+                id: this.state.id,
+                name: symbol==='name'?e.target.value:this.state.name,
+                email: symbol==='email'?e.target.value:this.state.email,
+                phone: symbol==='phone'?e.target.value:this.state.phone,
+                addressStreet: symbol==='street'?e.target.value:this.state.addressStreet,
+                addressSurburb: symbol==='suburb'?e.target.value:this.state.addressSurburb,
+                addressPostcode: symbol==='postcode'?e.target.value:this.state.addressPostcode,
+                addressState: symbol==='state'?e.target.value:this.state.addressState 
+            }
+        });
     }
 
     getCardDetail = () => {
@@ -89,7 +101,6 @@ class Payment extends Component{
                     <dd className="ui input pay_input" style={{width: "60%"}}>
                         <input
                             type="text"
-                            onChange={this.onInputChange}
                             name="cardNumber"
                             placeholder='Credit Card Number'
                             required
@@ -101,7 +112,6 @@ class Payment extends Component{
                     <dd className="ui input pay_input" style={{width: "60%"}}>
                         <input
                             type="text"
-                            onChange={this.onInputChange}
                             name="expiredDateM"
                             placeholder='MM'
                             required
@@ -110,7 +120,6 @@ class Payment extends Component{
                         <p>/</p>
                         <input
                             type="text"
-                            onChange={this.onInputChange}
                             name="expiredDateY"
                             placeholder='YY'
                             required
@@ -123,7 +132,6 @@ class Payment extends Component{
                     <dd className="ui input pay_input" style={{width: "20%"}}>
                         <input
                             type="text"
-                            onChange={this.onInputChange}
                             name="securityNumber"
                             placeholder='XXX'
                             required
@@ -162,7 +170,7 @@ class Payment extends Component{
                                             <hr id="hr" />
                                             <dt>Options:</dt>
                                             <dd>
-                                                <select onChange={this.onDeliveryChanged}>
+                                                <select onChange={(e)=> this.onInputChange(e, 'delivery')}>
                                                     {this.state.delivery_options.map((option) => <option value={option.id}>{option.description}</option>)}
                                                 </select>
                                             </dd>
@@ -172,11 +180,11 @@ class Payment extends Component{
                                             <dd className="ui input pay_input" style={{width: "60%"}}>
                                                 <input
                                                     type="text"
-                                                    onChange={this.onInputChange}
+                                                    onChange={(e)=> this.onInputChange(e, 'name')}
                                                     name="name"
                                                     placeholder='Name'
                                                     required
-                                                    value={this.props.user.name}
+                                                    value={this.state.user.name}
                                                 />
                                             </dd>
                                             <dt className="">
@@ -185,11 +193,11 @@ class Payment extends Component{
                                             <dd className="ui input pay_input" style={{width: "60%"}}>
                                                 <input
                                                     type="text"
-                                                    onChange={this.onInputChange}
+                                                    onChange={(e)=> this.onInputChange(e, 'phone')}
                                                     name="phone"
                                                     placeholder='Phone'
                                                     required
-                                                    value={this.props.user.phone}
+                                                    value={this.state.user.phone}
                                                 />
                                             </dd>
                                             <dt className="">
@@ -198,11 +206,11 @@ class Payment extends Component{
                                             <dd className="ui input pay_input" style={{width: "60%"}}>
                                                 <input
                                                     type="text"
-                                                    onChange={this.onInputChange}
+                                                    onChange={(e)=> this.onInputChange(e, 'street')}
                                                     name="address"
                                                     placeholder='Address, Street'
                                                     required
-                                                    value={this.props.user.addressStreet}
+                                                    value={this.state.user.addressStreet}
                                                 />
                                             </dd>
                                             <dt className="">
@@ -211,11 +219,11 @@ class Payment extends Component{
                                             <dd className="ui input pay_input" style={{width: "60%"}}>
                                                 <input
                                                     type="text"
-                                                    onChange={this.onInputChange}
+                                                    onChange={(e)=> this.onInputChange(e, 'suburb')}
                                                     name="suburb"
                                                     placeholder='Suburb'
                                                     required
-                                                    value={this.props.user.addressSurburb }
+                                                    value={this.state.user.addressSurburb }
                                                 />
                                             </dd>
                                             <dt className="">
@@ -224,16 +232,16 @@ class Payment extends Component{
                                             <dd className="ui input pay_input" style={{width: "60%"}}>
                                                 <input
                                                     type="text"
-                                                    onChange={this.onInputChange}
+                                                    onChange={(e)=> this.onInputChange(e, 'postcode')}
                                                     name="postCode"
                                                     required
-                                                    value={this.props.user.addressPostcode}
+                                                    value={this.state.user.addressPostcode}
                                                 />
                                             </dd>
                                             <dt>State:</dt>
                                             <dd>
-                                                <select onChange={this.onStateChanged}>
-                                                    {AUS_STATES.map((option) => <option selected={option === this.props.user.addressState} value={option}>{option}</option>)}
+                                                <select onChange={(e)=> this.onInputChange(e, 'state')}>
+                                                    {AUS_STATES.map((option) => <option selected={option === this.state.user.addressState} value={option}>{option}</option>)}
                                                 </select>
                                             </dd>
                                         </dl>
