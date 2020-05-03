@@ -13,9 +13,8 @@ const initialState = true?{
 }:{};
 
 export function shoppingcart(state = initialState, action) {
-    console.log(state);
     switch (action.type) {
       default:
         return state
     }
-  }
+}

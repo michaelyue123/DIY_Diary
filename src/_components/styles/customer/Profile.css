@@ -5,12 +5,17 @@
     width: 30%;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 35%;
-    font-size: 1.3vw;
+    font-size: 1.4vw;
+    line-height: 3vw;
 }
 
 #formControl {
     margin-bottom: 10px;
 }
 
+#profile {
+    margin-left: 40%;
+    margin-right: 35%;
+}

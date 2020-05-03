@@ -4,26 +4,14 @@
     text-align: center;
 }
 
-dt {
-    float: left;
-    clear: left;
-    margin-right: 5px;
-    font-weight: bold;
-    padding: 10px;
-}
-  
-dd {
-    margin-left: 0px;
-    padding: 10px;
-}
-
 .dl.list {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
     position: relative;
     color: aliceblue;
     width: 38%;
-    margin-top: 10%;
-    font-size: 2vw;
+    line-height: 3.7vw;
+    margin-top: 3%;
+    font-size: 1.8vw;
     padding: 20px;
     border-radius: 10px;
     transition: 1s;
@@ -43,6 +31,7 @@ dd {
 
 #update {
     color: black;
+    font-size: 1.1vw;
 }
 
 #personal {
@@ -53,6 +42,13 @@ dd {
     display: inline-block; 
     margin-left: 10%; 
 }
+
+.content.button {
+    margin-left: 40%;
+    margin-right: 35%;
+}
+
+
 
 
 

@@ -9,7 +9,7 @@ export const userConstants = {
     
     LOGOUT: 'USERS_LOGOUT',
 
-    NAME: 'CHANGE_NAME',
+    UPDATE: 'UPDATE_CLIENT',
     EMAIL: 'CHANGE_EMAIL',
     ADDRESS: 'CHANGE_ADDRESS'
 };

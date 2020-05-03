@@ -1,4 +1,5 @@
 import { alertConstants } from '../_constants';
+import { alertService } from '../_services';
 
 export const alertActions = {
     success,
@@ -27,11 +28,11 @@ function clear() {
 }
 
 function show_success(title, message, showConfirmButton, timer){
-    alertActions.success(title, message, showConfirmButton, timer);
+    alertService.success(title, message, showConfirmButton, timer);
 }
 function show_error(title, message){
-    alertActions.error(title, message);
+    alertService.error(title, message);
 }
 function show_info(title, message){
-    alertActions.info(title, message);
+    alertService.info(title, message);
 }

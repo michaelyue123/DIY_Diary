@@ -34,6 +34,7 @@ class App extends React.Component {
                         <ProtectedRoute exact path="/content" component={Content} />
                         <ProtectedRoute exact path="/profile" component={Profile} />
                         <ProtectedRoute exact path="/payment" component={Payment} />
+                        <ProtectedRoute exact path="/diary" component={Diary} />
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
                         <ProtectedRoute exact path="/admin/user" component={User} />
                         <ProtectedRoute exact path="/admin/diary" component={Diary} />

@@ -7,7 +7,7 @@ import { commonActions } from '../../../_actions';
 import Cards from '../../../_images/credit-cards.png'
 import PayPal from '../../../_images/paypal.png'
 import '../../styles/Register.css';
-import {AUS_STATES} from '../../../_constants';
+import { AUS_STATES } from '../../../_constants';
 
 class Payment extends Component{
 

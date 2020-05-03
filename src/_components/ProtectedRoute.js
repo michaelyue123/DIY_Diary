@@ -7,7 +7,6 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     return (
         <Route {...rest} render={props => {
             let loginUser = {user};
-            console.log(loginUser);
             if (loginUser && loginUser.user && loginUser.user.id){
                 return <Component {...props} />
             }else{
