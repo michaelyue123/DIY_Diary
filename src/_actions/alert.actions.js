@@ -27,12 +27,12 @@ function clear() {
     return { type: alertConstants.CLEAR };
 }
 
-function show_success(title, message, showConfirmButton, timer){
-    alertService.success(title, message, showConfirmButton, timer);
+function show_success(title, message, showConfirmButton, timer, func){
+    alertService.success(title, message, showConfirmButton, timer, func);
 }
-function show_error(title, message){
-    alertService.error(title, message);
+function show_error(title, message, func){
+    alertService.error(title, message, func);
 }
-function show_info(title, message){
-    alertService.info(title, message);
+function show_info(title, message, func){
+    alertService.info(title, message, func);
 }

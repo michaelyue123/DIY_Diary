@@ -38,7 +38,7 @@ class Profile extends Component {
 
     onSubmitUpdate = async () => {
         await this.props.updateInfo(this.state);
-        alertActions.show_success("Update Successfully", "", false, 1500);
+        alertActions.show_success("Update Successfully", "", false, 1500, null);
     }
 
     render() {

@@ -9,29 +9,32 @@ export const alertService = {
     info
 };
 
-function success(title, message, showConfirmButton, timer) {
+function success(title, message, showConfirmButton, timer, func) {
     MySwal.fire({
         position: 'top-center',
         icon: 'success',
         title: title,
         text: message,
+        onClose: func,
         showConfirmButton: showConfirmButton,
         timer: timer===0?999999:timer,
     });
 }
 
-function error(title, message) {
+function error(title, message, func) {
     MySwal.fire({
         icon: 'error',
         title: title,
+        onClose: func,
         text: message,
     });
 }
 
-function info(title, message) {
+function info(title, message, func) {
     MySwal.fire({
         icon: 'info',
         title: title,
+        onClose: func,
         text: message,
     });
 }

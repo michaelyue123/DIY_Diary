@@ -13,11 +13,11 @@ async function getDeliveryOptions() {
                     if (options){
                         return options;
                     }else{
-                        alertActions.show_info("Cannot get delivery options","Please call administrator.");
+                        alertActions.show_info("Cannot get delivery options","Please call administrator.", "", null);
                     }
                 },
                 error => {
-                    alertActions.show_error(error.toString());
+                    alertActions.show_error(error.toString(), "", null);
                 }
             );
 

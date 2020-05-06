@@ -6,7 +6,6 @@ export const commonService = {
 };
 
 async function getDeliveryOptions() {
-    console.log("Common Service");
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

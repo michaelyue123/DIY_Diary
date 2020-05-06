@@ -15,11 +15,11 @@ async function getOrders(userId, number){
                     if (orders){
                         return orders;
                     }else{
-                        alertActions.show_info("No Orders","");
+                        alertActions.show_info("No Orders","", null);
                     }
                 },
                 error => {
-                    alertActions.show_error(error.toString());
+                    alertActions.show_error(error.toString(), "", null);
                 }
             );
 }
@@ -29,5 +29,19 @@ function getOrder(userId){
 }
 
 function sendOrder(order){
-    
+    console.log("Send order");
+    return orderService.sendOrder(order)
+            .then(
+                orderId => { 
+                    if (orderId){
+                        console.log("order id: " + orderId);
+                        return orderId;
+                    }else{
+                        alertActions.show_error("Order failed","Please contact with administrator.");
+                    }
+                },
+                error => {
+                    // dispatch(alertActions.error(error.toString()));
+                }
+            );
 }
