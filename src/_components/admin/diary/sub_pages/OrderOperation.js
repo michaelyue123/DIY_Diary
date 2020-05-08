@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../../styles/admin/DiaryNavButton.css';
-import DiaryNavButton from './DiaryNavButton';
+import '../../../styles/admin/DiaryNavButton.css';
+import DiaryNavButton from '../DiaryNavButton';
 
 class OrderOperation extends Component{
 

@@ -4,8 +4,8 @@ import { Button } from 'react-bootstrap';
 import '../../styles/customer/payment/Payment.css';
 import { Link } from 'react-router-dom';
 import { commonActions, orderActions, alertActions } from '../../../_actions';
-import Cards from '../../../_images/credit-cards.png'
-import PayPal from '../../../_images/paypal.png'
+import Cards from '../../images/credit-cards.png'
+import PayPal from '../../images/paypal.png'
 import '../../styles/Register.css';
 import { AUS_STATES } from '../../../_constants';
 

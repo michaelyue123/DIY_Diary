@@ -12,9 +12,9 @@ import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
 import User from './admin/user/User'
 import Diary from './admin/diary/Diary'
-import ParametersOperations from './admin/diary/ParametersOperation'
-import OrderOperation from './admin/diary/OrderOperation'
-import ReviewOperation from './admin/diary/ReviewOperation'
+import ParametersOperations from './admin/diary/sub_pages/ParametersOperation'
+import OrderOperation from './admin/diary/sub_pages/OrderOperation'
+import ReviewOperation from './admin/diary/sub_pages/ReviewOperation'
 import Report from './admin/report/Report'
 import { connect } from 'react-redux';
 
