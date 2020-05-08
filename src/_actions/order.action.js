@@ -37,7 +37,7 @@ function sendOrder(order){
                         console.log("order id: " + orderId);
                         return orderId;
                     }else{
-                        alertActions.show_error("Order failed","Please contact with administrator.");
+                        alertActions.show_error("Order failed","Please contact with administrator.", null);
                     }
                 },
                 error => {

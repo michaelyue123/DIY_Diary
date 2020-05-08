@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import '../../styles/admin/Diary.css';
+import DiaryNavButton from './DiaryNavButton';
 
 class Diary extends Component{
+
     render(){
         return(
-            <div class="text-center">
-                <h1 id="content">Diary</h1>
+            <div className="text-center" >
+                <DiaryNavButton action="" />
             </div>
         );
     }

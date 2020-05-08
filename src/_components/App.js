@@ -12,6 +12,9 @@ import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
 import User from './admin/user/User'
 import Diary from './admin/diary/Diary'
+import ParametersOperations from './admin/diary/ParametersOperation'
+import OrderOperation from './admin/diary/OrderOperation'
+import ReviewOperation from './admin/diary/ReviewOperation'
 import Report from './admin/report/Report'
 import { connect } from 'react-redux';
 
@@ -38,6 +41,9 @@ class App extends React.Component {
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
                         <ProtectedRoute exact path="/admin/user" component={User} />
                         <ProtectedRoute exact path="/admin/diary" component={Diary} />
+                        <ProtectedRoute exact path="/admin/diary/parameters" component={ParametersOperations} />
+                        <ProtectedRoute exact path="/admin/diary/orders" component={OrderOperation} />
+                        <ProtectedRoute exact path="/admin/diary/reviews" component={ReviewOperation} />
                         <ProtectedRoute exact path="/admin/report" component={Report} />
                         <Route path='*' component={PageNotFound} />
                     </Switch> 

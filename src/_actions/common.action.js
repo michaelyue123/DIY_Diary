@@ -3,7 +3,8 @@ import { alertActions } from './';
 
 export const commonActions = {
     getDeliveryOptions,
-    getPaymentOptions
+    getPaymentOptions,
+    getParameters
 };
 
 async function getDeliveryOptions() {
@@ -34,6 +35,21 @@ async function getPaymentOptions() {
             },
             error => {
                 alertActions.error(error.toString());
+            }
+        );
+}
+
+async function getParameters() {
+    return commonService.getParameters().then(
+            parameters => { 
+                if (parameters){
+                    return parameters;
+                }else{
+                    alertActions.show_error("Cannot get diary parameters","Please call administrator.", null);
+                }
+            },
+            error => {
+                alertActions.show_error(error.toString(), null);
             }
         );
 }

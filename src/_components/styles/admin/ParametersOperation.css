@@ -1,0 +1,34 @@
+.admin_title {
+    position: relative;
+    color: aliceblue;
+    text-align: left;
+    margin-left: 2%;
+}
+
+.admin_params_subbox{
+    position: relative;
+    color: aliceblue;
+    text-align: left;
+    margin: 3%;
+    float:left;
+    width:25%;
+}
+
+.content_div{
+    margin: 1%;
+}
+
+.params_options{
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.form-check-label {
+    font-weight: bold;
+}
+
+.params_icon{
+    height: 25px;
+    margin-left: 2%;
+    margin-right: 2%;
+}

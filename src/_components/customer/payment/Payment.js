@@ -96,13 +96,13 @@ class Payment extends Component{
     checkNumber = (e, symbol) => {
         if (e.target.validity.valid){
             this.setState({
-                expiredDateM: symbol == 'expiredDateM'?e.target.value:this.state.expiredDateM,
-                securityNumber: symbol == 'securityNumber'?e.target.value:this.state.securityNumber
+                expiredDateM: symbol === 'expiredDateM'?e.target.value:this.state.expiredDateM,
+                securityNumber: symbol === 'securityNumber'?e.target.value:this.state.securityNumber
             })
         }else{
             this.setState({
-                expiredDateM: symbol == 'expiredDateM'?"":this.state.expiredDateM,
-                securityNumber: symbol == 'securityNumber'?"":this.state.securityNumber
+                expiredDateM: symbol === 'expiredDateM'?"":this.state.expiredDateM,
+                securityNumber: symbol === 'securityNumber'?"":this.state.securityNumber
             })
         }
     }
@@ -206,7 +206,7 @@ class Payment extends Component{
             deliverySuburb: this.state.user.addressSurburb,
             deliveryPostcode: this.state.user.addressPostcode,
             deliveryState: this.state.user.addressState,
-            price: this.state.checkout_info.delivery_option == 1?20.0:29.9
+            price: this.state.checkout_info.delivery_option === 1?20.0:29.9
         }
 
         var order_id = await this.props.sendOrder(order);

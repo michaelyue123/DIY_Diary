@@ -36,7 +36,6 @@ class OrderTable extends Component {
     receiveOrder = async () =>{
 
         let orderList = await orderActions.getOrders(this.props.user.id, this.props.count);
-        console.log(orderList);
 
         if (orderList){
             this.setState({
