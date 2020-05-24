@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../../styles/admin/User.css';
 import { validateForm, validEmailRegex, validUsernameRegex } from '../../customer/register/RegValidate';
 import Popup from "reactjs-popup";

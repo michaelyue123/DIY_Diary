@@ -7,7 +7,8 @@ export const adminService = {
     recoverDiaryParameters,
     getAllUsers,
     changeActive,
-    updateUserProfile
+    updateUserProfile,
+    download
 };
 
 async function updateDiaryParameters(userId, target, description) {
@@ -80,6 +81,18 @@ async function updateUserProfile(id, name, email, phone, addressStreet, addressS
     const response = await fetch(API_URL + "/updateUserProfile", requestOptions);
     const response_1 = await handleResponse(response);
     return response_1;
+}
+
+async function download(period) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify({ period })
+    };
+
+    const response = await fetch(API_URL + "/order/download", requestOptions);
+    // const response_1 = await handleResponse(response);
+    return response;
 }
 
 function handleResponse(response) {

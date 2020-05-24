@@ -8,7 +8,8 @@ export const adminActions = {
     recoverDiaryParameters,
     getAllUsers,
     changeActive,
-    updateUserProfile
+    updateUserProfile,
+    download
 };
 
 async function updateDiaryParameters(userId, target, description, close) {
@@ -156,6 +157,30 @@ async function changeActive(user, status) {
                 }
             );
 }
+
+
+async function download(period) {
+
+    return adminService.download(period)
+            .then(
+                response => response.blob()
+            ).then((blob) => {
+                if (blob){
+                    // 2. Create blob link to download
+                    const url = window.URL.createObjectURL(new Blob([blob]));
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', 'report-'+(period===0?'weekly':'monthly')+'.csv');
+                    // 3. Append to html page
+                    document.body.appendChild(link);
+                    // 4. Force download
+                    link.click();
+                    // 5. Clean up and remove the link
+                    link.parentNode.removeChild(link);
+                }
+              });
+}
+
 async function updateUserProfile(user) {
 
     return adminService.updateUserProfile(user.id, user.name, user.email, user.phone, user.addressStreet, user.addressSurburb, user.addressPostcode, user.addressState)
