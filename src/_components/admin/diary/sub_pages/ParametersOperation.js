@@ -270,15 +270,15 @@ class ParametersOperation extends Component{
                         <div className="content_div">
                             {this.state.params_pc.map((option)=>
                                 <Form.Check 
-                                className="params_options" 
-                                label={option.active?option.description:option.description+"(out-of-stock)"} 
-                                value={option} 
-                                type="checkbox" 
-                                checked={option.isChecked}
-                                id={`default-pc-checkbox-${option.id}`} 
-                                onClick={()=>{this.selectOptions({option},'pc')}}
+                                    className="params_options" 
+                                    label={option.active?option.description:option.description+"(out-of-stock)"} 
+                                    value={option} 
+                                    type="checkbox" 
+                                    checked={option.isChecked}
+                                    id={`default-pc-checkbox-${option.id}`} 
+                                    onClick={()=>{this.selectOptions({option},'pc')}}
                                 />
-                                )}
+                            )}
                         </div>
                     </div>
                     <div className="admin_params_subbox">

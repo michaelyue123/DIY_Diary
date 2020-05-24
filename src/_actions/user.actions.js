@@ -71,10 +71,11 @@ function register(role, name, email, password) {
                         }
 
                         dispatch(success(user, role));
-                        dispatch(alertActions.success("Registration successful.","", true, 0));
+                        
                         if(role === 1){
-                            history.push('/admin');
+                            dispatch(alertActions.success("Add admin successful.","", true, 0));
                         }else{
+                            dispatch(alertActions.success("Registration successful.","", true, 0));
                             history.push('/content');
                         }
                     }else{

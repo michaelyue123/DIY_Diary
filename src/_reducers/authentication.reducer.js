@@ -2,8 +2,8 @@ import { userConstants } from '../_constants';
 
 const initialState = true?{
   user:{
-    id: 'c0001',
-    // id: 'a0001',
+    // id: 'c0001',
+    id: 'a0001',
     name: 'Test',
     email: 'test@gmail.com',
     password: '',
@@ -13,8 +13,8 @@ const initialState = true?{
     addressPostcode: '3053',
     addressState: 'Victoria'
   },
-  // role: 1
-  role: 2
+  role: 1
+  // role: 2
 }:{};
 
 export function authentication(state = initialState, action) {

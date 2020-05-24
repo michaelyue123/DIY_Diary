@@ -30,11 +30,11 @@ async function getPaymentOptions() {
                 if (options){
                     return options;
                 }else{
-                    alertActions.error("Cannot get payment options","Please call administrator.");
+                    alertActions.show_info("Cannot get payment options","Please call administrator.");
                 }
             },
             error => {
-                alertActions.error(error.toString());
+                alertActions.show_error(error.toString());
             }
         );
 }
@@ -45,7 +45,7 @@ async function getParameters() {
                 if (parameters){
                     return parameters;
                 }else{
-                    alertActions.show_error("Cannot get diary parameters","Please call administrator.", null);
+                    alertActions.show_info("Cannot get diary parameters","Please call administrator.", null);
                 }
             },
             error => {

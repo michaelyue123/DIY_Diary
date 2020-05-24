@@ -34,8 +34,14 @@ class OrderTable extends Component {
     }
 
     receiveOrder = async () =>{
+        let user_id;
+        if (this.props.search_user.id === undefined){
+            user_id = this.props.user.id;
+        }else{
+            user_id = this.props.search_user.id;
+        }
 
-        let orderList = await orderActions.getOrders(this.props.user.id, this.props.count);
+        let orderList = await orderActions.getOrders(user_id, this.props.count);
 
         if (orderList){
             this.setState({

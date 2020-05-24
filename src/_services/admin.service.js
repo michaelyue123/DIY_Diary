@@ -4,7 +4,10 @@ import qs from 'qs';
 export const adminService = {
     updateDiaryParameters,
     deleteDiaryParameters,
-    recoverDiaryParameters
+    recoverDiaryParameters,
+    getAllUsers,
+    changeActive,
+    updateUserProfile
 };
 
 async function updateDiaryParameters(userId, target, description) {
@@ -39,6 +42,42 @@ async function recoverDiaryParameters(userId, target, diaryOptions) {
     };
 
     const response = await fetch(API_URL + "/diary/recoverDiaryParameters", requestOptions);
+    const response_1 = await handleResponse(response);
+    return response_1;
+}
+
+async function getAllUsers(id, email, name, phone, addressStreet, addressSurburb, addressPostcode, addressState, active) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify({ id, email, name, phone, addressStreet, addressSurburb, addressPostcode, addressState, active })
+    };
+
+    const response = await fetch(API_URL + "/getAllUser", requestOptions);
+    const response_1 = await handleResponse(response);
+    return response_1;
+}
+
+async function changeActive(id, active) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify({ id, active })
+    };
+
+    const response = await fetch(API_URL + "/changeActive", requestOptions);
+    const response_1 = await handleResponse(response);
+    return response_1;
+}
+
+async function updateUserProfile(id, name, email, phone, addressStreet, addressSurburb, addressPostcode, addressState) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify({ id, name, email, phone, addressStreet, addressSurburb, addressPostcode, addressState })
+    };
+
+    const response = await fetch(API_URL + "/updateUserProfile", requestOptions);
     const response_1 = await handleResponse(response);
     return response_1;
 }

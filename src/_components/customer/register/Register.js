@@ -55,9 +55,9 @@ class Register extends Component {
                 break;
             default:
                 break;
-            }
-            await this.setState({ errors, [name]: value });
         }
+        await this.setState({ errors, [name]: value });
+    }
 
     onClick = () => this.setState({ checked: !this.state.checked });
 
