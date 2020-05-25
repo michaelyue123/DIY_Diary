@@ -1,0 +1,14 @@
+#user_header{
+    text-align: center;
+    margin-top: 3%;
+    color: aliceblue;
+    position: relative;
+    font-family: fantasy;
+    font-size: 3.3vw;
+    transition: 1s;
+    margin-bottom: 50px;
+}
+
+.profile{
+    color:white;
+}

@@ -30,8 +30,22 @@ function getOrder(userId){
 
 }
 
-function sendOrder(order){
-    
+async function sendOrder(order){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify(order)
+    };
+
+    const response = await fetch(API_URL + "/order/send", requestOptions);
+    const response_1 = await handleResponse(response);
+    let resultCode = response_1.resultCode;
+    if (resultCode === 0) {
+        return response_1.returnObj;
+    }
+    else {
+        return null;
+    }
 }
 
 function handleResponse(response) {

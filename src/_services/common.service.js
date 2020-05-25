@@ -2,11 +2,11 @@ import { API_URL } from '../_constants';
 
 export const commonService = {
     getDeliveryOptions,
-    getPaymentOptions
+    getPaymentOptions,
+    getParameters
 };
 
 async function getDeliveryOptions() {
-    console.log("Common Service");
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -31,6 +31,23 @@ async function getPaymentOptions() {
     };
 
     const response = await fetch(API_URL + "/order/getPurchaseOptions", requestOptions);
+    const response_1 = await handleResponse(response);
+    let resultCode = response_1.resultCode;
+    if (resultCode === 0) {
+        return response_1.returnObj;
+    }
+    else {
+        return null;
+    }
+}
+
+async function getParameters(){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    };
+
+    const response = await fetch(API_URL + "/diary/getParameters", requestOptions);
     const response_1 = await handleResponse(response);
     let resultCode = response_1.resultCode;
     if (resultCode === 0) {

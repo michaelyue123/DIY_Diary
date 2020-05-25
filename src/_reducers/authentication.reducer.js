@@ -2,7 +2,8 @@ import { userConstants } from '../_constants';
 
 const initialState = true?{
   user:{
-    id: 'c0020',
+    // id: 'c0001',
+    id: 'a0001',
     name: 'Test',
     email: 'test@gmail.com',
     password: '',
@@ -11,11 +12,12 @@ const initialState = true?{
     addressSurburb: 'Carlton',
     addressPostcode: '3053',
     addressState: 'Victoria'
-  }
+  },
+  role: 1
+  // role: 2
 }:{};
 
 export function authentication(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case userConstants.LOGIN_REQUEST:
       return {
