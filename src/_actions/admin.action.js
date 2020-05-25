@@ -1,4 +1,4 @@
-import { adminService } from '../_services';
+import { adminService, userService } from '../_services';
 import { alertActions } from './alert.actions';
 import qs from 'qs';
 
@@ -9,7 +9,8 @@ export const adminActions = {
     getAllUsers,
     changeActive,
     updateUserProfile,
-    download
+    download,
+    registerAdmin
 };
 
 async function updateDiaryParameters(userId, target, description, close) {
@@ -206,6 +207,24 @@ async function updateUserProfile(user) {
                 error => {
                     alertActions.show_error(error.toString(), "", null);
                     return null;
+                }
+            );
+}
+
+function registerAdmin(role, name, email, password) {
+    return  userService.register(role, name, email, password)
+            .then(
+                user => { 
+                    if (user){
+                        alertActions.show_success("Add admin successful.","", true, 0, null);
+                        return user;
+                    }else{
+                        alertActions.show_error("Add admin","Please check your information.");
+                    }
+                    return null;
+                },
+                error => {
+                    alertActions.show_error(error.toString(), "", null);
                 }
             );
 }

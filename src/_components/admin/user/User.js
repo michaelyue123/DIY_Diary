@@ -5,7 +5,7 @@ import Popup from "reactjs-popup";
 import { Button} from 'react-bootstrap';
 import CommonReg from '../../customer/register/CommonReg';
 import RegSubmit from '../../customer/register/RegSubmit';
-import { adminActions, userActions, alertActions } from '../../../_actions';
+import { adminActions, alertActions } from '../../../_actions';
 import { connect } from 'react-redux';
 import DataTable from 'react-data-table-component';
 import { userConstants } from '../../../_constants'
@@ -174,11 +174,16 @@ class User extends Component{
     onFormSubmit = async (e) => {
         e.preventDefault();
         const { email, password, confirmPassword, username, checked, errors, role} = this.state;
+        
+        console.log(this.state)
 
         if(email !== '' && password !== '' && confirmPassword !== '' && username !== '') {
+            console.log(errors)
+            console.log(validateForm(errors))
             if(validateForm(errors)) {
                 if(checked) {
-                    this.props.register(role?role:2, username, email, password);
+                    console.log("IN")
+                    adminActions.registerAdmin(role?role:2, username, email, password);
                 }else {
                     this.props.waringAlert("Oops...", 'Please make sure you\'ve checked the box!')
                 }
@@ -204,7 +209,7 @@ class User extends Component{
                                 </a>
                                 <div id="pop_header" style={{}}> 
                                     <span>   
-                                        Add A Administrator
+                                        Add An Administrator
                                     </span>
                                 </div>
                                 <div id="pop_content">
@@ -249,7 +254,6 @@ class User extends Component{
 
 const actionCreators = (dispatch) => {
     return {
-        register: userActions.register,
         waringAlert: alertActions.error,
         goToDetail: (user) => { dispatch({ type: userConstants.DETAIL, user })}
     }

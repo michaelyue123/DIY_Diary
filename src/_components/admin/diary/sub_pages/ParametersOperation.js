@@ -77,7 +77,6 @@ class ParametersOperation extends Component{
     addParameters = async (target, close) => {
 
         if(this.state.add_text){
-            console.log(target);
             switch(target){
                 case 'paperColor':
                     for (var i =0 ; i<this.state.params_pc.length; i++){
@@ -199,7 +198,7 @@ class ParametersOperation extends Component{
     }
 
     showPopup = (target) => {
-        return <Popup trigger={<img className="params_icon" src={Add} style={{"cursor":"pointer"}}/>}
+        return <Popup trigger={<img className="params_icon" src={Add} id={`${target}-add`} style={{"cursor":"pointer"}}/>}
                     modal
                     closeOnDocumentClick
                     style={{"border-radius": "18px"}}
@@ -262,8 +261,8 @@ class ParametersOperation extends Component{
                         <div>
                             <h2 style={{"float":"left"}}>Paper Color: </h2> 
                             {this.showPopup('paperColor')}
-                            <img className="params_icon" src={Delete} style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('paperColor')}}/>
-                            <img className="params_icon" src={Recover} style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('paperColor')}}/>
+                            <img className="params_icon" src={Delete} id='pc-delete' style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('paperColor')}}/>
+                            <img className="params_icon" src={Recover} id='pc-recover' style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('paperColor')}}/>
                         </div>
                         <div style={{"height":"10px"}}/>
                         <hr id="hr" />
@@ -285,8 +284,8 @@ class ParametersOperation extends Component{
                         <div>
                             <h2 style={{"float":"left"}}>Cover Color: </h2> 
                             {this.showPopup('coverColor')}
-                            <img className="params_icon" src={Delete} style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('coverColor')}}/>
-                            <img className="params_icon" src={Recover} style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('coverColor')}}/>
+                            <img className="params_icon" src={Delete} id='cc-delete' style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('coverColor')}}/>
+                            <img className="params_icon" src={Recover} id='cc-recover' style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('coverColor')}}/>
                         </div>
                         <div style={{"height":"10px"}}/>
                         <hr id="hr" />
@@ -308,8 +307,8 @@ class ParametersOperation extends Component{
                         <div>
                             <h2 style={{"float":"left"}}>Paper Type: </h2>
                             {this.showPopup('paperType')} 
-                            <img className="params_icon" src={Delete} style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('paperType')}}/>
-                            <img className="params_icon" src={Recover} style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('paperType')}}/>
+                            <img className="params_icon" src={Delete} id='pt-delete' style={{"cursor":"pointer"}} onClick={()=>{this.deleteParameters('paperType')}}/>
+                            <img className="params_icon" src={Recover} id='pt-recover' style={{"cursor":"pointer"}} onClick={()=>{this.recoverParameters('paperType')}}/>
                         </div>
                         <div style={{"height":"10px"}}/>
                         <hr id="hr" />
