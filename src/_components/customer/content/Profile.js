@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userConstants } from '../../../_constants/';
 import { AUS_STATES, MELBOURNE_SUBURB } from '../../../_constants';
-import {alertActions} from '../../../_actions';
+import { alertActions } from '../../../_actions';
 
 class Profile extends Component {
 

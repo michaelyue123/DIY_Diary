@@ -291,7 +291,7 @@ const actionCreator = () => {
 }
 
 const mapStatesToProps = (state) => {
-    console.log(state.shoppingcart);
+    console.log(state);
     return {
         shoppingcart: state.shoppingcart.diarysettings,
         user: state.authentication.user
