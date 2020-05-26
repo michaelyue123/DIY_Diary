@@ -76,15 +76,15 @@ class User extends Component{
                 { 
                     cell: (row) => {
                         return row.active?
-                            <Button variant="danger" style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, false)}}>Block</Button>:
-                            <Button variant="success" style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, true)}}>Active</Button>
+                            <Button variant="danger" id={`${row.id}-ba-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, false)}}>Block</Button>:
+                            <Button variant="success" id={`${row.id}-ac-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, true)}}>Active</Button>
                     },
                     ignoreRowClick: true,
                     allowOverflow: true
                 },
                 { 
                     cell: (row) => {
-                        return <Button variant="info" style={{"cursor":"pointer"}} onClick={()=>{this.goToDetail(row)}}>Details</Button>
+                        return <Button variant="info" id={`${row.id}-detail-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.goToDetail(row)}}>Details</Button>
                     },
                     ignoreRowClick: true,
                     allowOverflow: true
@@ -118,7 +118,7 @@ class User extends Component{
     }
 
     changeActive = (data, status) => {
-        alertActions.show_warning("Are you sure to "+(status?"active":"block")+" the user?", "", "Yes, cancel it.", true, 0, async (isConfirm)=>{
+        alertActions.show_warning("Are you sure to "+(status?"active":"block")+" the user?", "", "Yes, "+(status?"active":"block")+" it.", true, 0, async (isConfirm)=>{
             if (isConfirm.value){
                 let result = await adminActions.changeActive(data, status)
                 console.log(result)
