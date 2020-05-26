@@ -4,13 +4,38 @@ import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { diaryConstants } from '../../../_constants/diary.constants';
+import { commonActions } from '../../../_actions/common.action';
 
 class MyDiary extends Component {
 
-    state = {
-        hasChoose: false,
-        title: this.props.shoppingcart.title_on_cover,
-        color: this.props.shoppingcart.cover_color
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            title: '',
+            cover_color: [],
+            select_coverColor: 'LightBlue',
+            id: ''
+        }
+
+        this.getParameters = this.getParameters.bind(this);
+    }
+
+    componentDidMount(){
+        this.getParameters();
+    }
+
+    getParameters = async() => {
+        var parameters = await commonActions.getParameters();
+
+        parameters.coverColor.map((option)=>{
+            return option.isChecked = false
+        })
+
+        this.setState({
+            cover_color: parameters.coverColor
+        });
+
     }
 
     onInputChange = async (e, symbol) => {
@@ -20,24 +45,27 @@ class MyDiary extends Component {
         });    
     }
 
+    onClickChange = async () => {
+        await this.props.updateInfo(this.state);
+        this.props.history.push('/diaryContent');
+    }
+
 
     render() {
-        const { hasChoose, title, color } = this.state;
+        const { title, cover_color, select_coverColor } = this.state;
         
         return (
             <div>
-                <div style={{ backgroundColor: color}} className="app container">
+                <div style={{ backgroundColor: select_coverColor}} className="app container">
                     <h1 className="diary title">{title}</h1>
                 </div>
                 <div className="flex-container">
-                    <div onClick={() => this.setState({color: 'lightyellow'})} style={{backgroundColor: 'lightyellow'}}></div>
-                    <div onClick={() => this.setState({color: 'lightgreen'})} style={{backgroundColor: 'lightgreen'}}></div>
-                    <div onClick={() => this.setState({color: 'skyblue'})} style={{backgroundColor: 'skyblue'}}></div>
-                    <div onClick={() => this.setState({color: 'red'})} style={{backgroundColor: 'red'}}></div>
-                    <div onClick={() => this.setState({color: 'black'})} style={{backgroundColor: 'black'}}></div>
-                    <div onClick={() => this.setState({color: 'orange'})} style={{backgroundColor: 'orange'}}></div>
-                    <div onClick={() => this.setState({color: 'grey'})} style={{backgroundColor: 'grey'}}></div>
-                    <div onClick={() => this.setState({color: 'pink'})} style={{backgroundColor: 'pink'}}></div>
+                    {
+                        cover_color.map((option) => {
+                            return <option onClick={() => this.setState({select_coverColor: option.description.replace(" ","")})}  style={{backgroundColor: option.description.replace(" ","")}} />
+                        })
+                    }
+                    
                 </div>
                 <div className="text box">
                     <Form.Control 
@@ -48,7 +76,7 @@ class MyDiary extends Component {
                         onChange={(e)=> this.onInputChange(e, 'title')} 
                     />
                 </div>
-                <Button onClick={() => this.props.history.push('/diaryContent')} className="ui button" id="personal" type="submit">
+                <Button onClick={this.onClickChange} className="ui button" id="personal" type="submit">
                     Next
                 </Button>
             </div>
@@ -64,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateInfo: (diary) => { dispatch({ type: diaryConstants.UPDATE_COVER, diary })}
+        updateInfo: (diary) => { dispatch({ type: diaryConstants.UPDATE_DIARY, diary })}
     }
 }
 

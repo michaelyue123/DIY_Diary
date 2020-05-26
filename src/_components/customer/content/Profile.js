@@ -97,7 +97,7 @@ class Profile extends Component {
                             onChange={(e)=> this.onInputChange(e, 'suburb')} 
                             placeholder="Street" 
                         />
-                        <Form.Control name="suburb" value={this.props.user.addressSurburb} custom="true" id="formControl" as="select" custom="true">
+                        <Form.Control name="suburb" value={this.props.user.addressSurburb} id="formControl" as="select" custom="true">
                             {MELBOURNE_SUBURB.map((option) => <option value={option === this.props.user.addressSurburb}>{option}</option>)}
                         </Form.Control>
                         <Form.Control 

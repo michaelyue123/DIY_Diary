@@ -14,16 +14,18 @@ const initialState = true?{
 
 export function shoppingcart(state = initialState, action) {
     switch (action.type) {
-      case diaryConstants.UPDATE_COVER:
+      case diaryConstants.UPDATE_DIARY:
         return {
-          title_on_cover: action.title_on_cover,
-          cover_color: action.cover_color
-        }
-      case diaryConstants.UPDATE_CONTENT:
-          return {
-            paper_color: action.paper_color,
-            paper_type: action.paper_type
+          diarysettings: {
+            title_on_cover: action.diary.title_on_cover,
+            cover_color: action.diary.cover_color,
+            paper_color: action.diary.paper_color,
+            paper_type: action.diary.paper_type,
+            paper_type_id: action.diary.paper_type_id,
+            paper_color_id: action.diary.paper_color_id,
+            cover_color_id: action.diary.cover_color_id
           }
+        }
       default:
         return state
     }
