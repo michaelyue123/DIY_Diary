@@ -15,7 +15,7 @@ class MyDiary extends Component {
             title: '',
             cover_color: [],
             select_coverColor: 'LightBlue',
-            id: ''
+            select_coverColor_id: ''
         }
 
         this.getParameters = this.getParameters.bind(this);
@@ -62,23 +62,27 @@ class MyDiary extends Component {
                 <div className="flex-container">
                     {
                         cover_color.map((option) => {
-                            return <option onClick={() => this.setState({select_coverColor: option.description.replace(" ","")})}  style={{backgroundColor: option.description.replace(" ","")}} />
+                            return <option key={option.id} onClick={() => this.setState({select_coverColor: option.description.replace(" ",""), select_coverColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
                         })
                     }
                     
                 </div>
-                <div className="text box">
-                    <Form.Control 
-                        id="formControl"
-                        className="cover text" 
-                        type="text" 
-                        placeholder="text on the cover"
-                        onChange={(e)=> this.onInputChange(e, 'title')} 
-                    />
-                </div>
-                <Button onClick={this.onClickChange} className="ui button" id="personal" type="submit">
-                    Next
-                </Button>
+
+                <Form className="diary cover">
+                    <Form.Label style={{color: 'aliceblue', marginBottom: '15px'}}>Please enter a text for diary title</Form.Label>
+                    <div className="text box">
+                        <Form.Control 
+                            className="cover text" 
+                            type="text" 
+                            placeholder="text on the cover"
+                            onChange={(e)=> this.onInputChange(e, 'title')} 
+                        />
+                    </div>
+
+                    <Button onClick={this.onClickChange} className="ui button" id="personal" type="submit">
+                        Next
+                    </Button>
+                </Form>
             </div>
         )
     }

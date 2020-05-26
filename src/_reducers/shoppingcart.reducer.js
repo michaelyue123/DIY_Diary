@@ -18,12 +18,12 @@ export function shoppingcart(state = initialState, action) {
         return {
           diarysettings: {
             title_on_cover: action.diary.title_on_cover,
-            cover_color: action.diary.cover_color,
-            paper_color: action.diary.paper_color,
-            paper_type: action.diary.paper_type,
-            paper_type_id: action.diary.paper_type_id,
-            paper_color_id: action.diary.paper_color_id,
-            cover_color_id: action.diary.cover_color_id
+            cover_color: action.diary.select_coverColor,
+            paper_color: action.diary.select_paperColor,
+            paper_type: action.diary.select_paperType,
+            paper_type_id: action.diary.select_paperType_id,
+            paper_color_id: action.diary.select_paperColor_id,
+            cover_color_id: action.diary.select_coverColor_id
           }
         }
       default:
