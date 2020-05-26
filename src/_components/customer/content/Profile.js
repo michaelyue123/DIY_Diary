@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../../styles/customer/Profile.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userConstants } from '../../../_constants/';
 import { AUS_STATES, MELBOURNE_SUBURB } from '../../../_constants';
@@ -32,13 +31,13 @@ class Profile extends Component {
             addressSurburb: symbol==='suburb'?e.target.value:this.state.addressSurburb,
             addressPostcode: symbol==='postcode'?e.target.value:this.state.addressPostcode,
             addressState: symbol==='state'?e.target.value:this.state.addressState 
-        });
-        
+        });   
     }
 
     onSubmitUpdate = async () => {
         await this.props.updateInfo(this.state);
         alertActions.show_success("Update Successfully", "", false, 1500, null);
+        this.props.history.push("/content");
     }
 
     render() {
@@ -115,9 +114,7 @@ class Profile extends Component {
                     </Form.Group>
 
                     <Button className="ui button" id="profile" type="button" onClick={this.onSubmitUpdate}>
-                        <Link to="/content">
-                            <span id="update">Save</span>
-                        </Link>
+                        <span id="update">Save</span>
                     </Button>
                 </Form>
             </div>
