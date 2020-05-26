@@ -3,7 +3,7 @@ import { alertActions } from './';
 
 export const orderActions = {
     getOrders,
-    getOrder,
+    addReview,
     sendOrder
 };
 
@@ -24,8 +24,23 @@ async function getOrders(userId, number){
             );
 }
 
-function getOrder(userId){
+async function addReview(userId, orderId, reviewScore, reviewDesc, close){
 
+    return orderService.addReview(userId, orderId, reviewScore, reviewDesc)
+            .then(
+                response => { 
+                    let code = response.resultCode;
+                    if (code == 0){
+                        alertActions.show_success("Thank your for giving a review.", "", true, 0, close())
+                        return response.returnObj;
+                    }else{
+                        alertActions.show_error(response.returnObj, "", null);
+                    }
+                },
+                error => {
+                    alertActions.show_error(error.toString(), "", null);
+                }
+            );
 }
 
 function sendOrder(order){
@@ -34,7 +49,6 @@ function sendOrder(order){
             .then(
                 orderId => { 
                     if (orderId){
-                        console.log("order id: " + orderId);
                         return orderId;
                     }else{
                         alertActions.show_error("Order failed","Please contact with administrator.", null);

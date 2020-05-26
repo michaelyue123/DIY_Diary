@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/admin/Diary.css';
 import DiaryNavButton from './DiaryNavButton';
 
-class Diary extends Component{
+class DiaryM extends Component{
 
     render(){
         return(
@@ -13,4 +13,4 @@ class Diary extends Component{
     }
 }
 
-export default Diary;
+export default DiaryM;

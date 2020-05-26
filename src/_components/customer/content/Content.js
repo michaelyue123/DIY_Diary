@@ -74,6 +74,11 @@ const Content = ({ user, order }) => {
                     <Col sm={{ size: 'auto', offset: 1 }}>Delivery Suburb:</Col>
                     <Col sm={{ size: 'auto'}}>{order.delivery_suburb}</Col>
                 </Row>
+                <div className="content button">
+                    <Button className="ui button" id="order_history" type="button">
+                        <Link to="/order_history">My History</Link>
+                    </Button>
+                </div>
             </dl>
         </div>
     )

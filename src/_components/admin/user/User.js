@@ -182,7 +182,6 @@ class User extends Component{
             console.log(validateForm(errors))
             if(validateForm(errors)) {
                 if(checked) {
-                    console.log("IN")
                     adminActions.registerAdmin(role?role:2, username, email, password);
                 }else {
                     this.props.waringAlert("Oops...", 'Please make sure you\'ve checked the box!')

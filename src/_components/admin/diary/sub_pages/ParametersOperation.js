@@ -274,7 +274,7 @@ class ParametersOperation extends Component{
                                     value={option} 
                                     type="checkbox" 
                                     checked={option.isChecked}
-                                    id={`default-pc-checkbox-${option.id}`} 
+                                    id={`default-pc-checkbox-${option.id}`}
                                     onClick={()=>{this.selectOptions({option},'pc')}}
                                 />
                             )}
