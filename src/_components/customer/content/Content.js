@@ -13,7 +13,7 @@ class Content extends Component {
 
         this.state = {
             user: this.props.user,
-            order: {}
+            order: null
         }
 
         this.getOrder = this.getOrder.bind(this)
@@ -25,9 +25,11 @@ class Content extends Component {
 
     getOrder = async () => {
         let result = await orderActions.getOrders(this.state.user.id, 1)
-        this.setState({
-            order: result[0]
-        })
+        if (result){
+            this.setState({
+                order: result[0]
+            })
+        }
     }
 
     render(){
@@ -70,40 +72,42 @@ class Content extends Component {
                         </Button>
                     </div>
                 </Container>
-    
+                {this.state.order ?
                 <Container className="dl list" id="block">
                     <h1 style={{textAlign: "center", fontFamily: "fantasy", fontSize: "1.2em"}}>Order Detail</h1>
                     <hr id="hr" />
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Order ID:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.id}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Order Date:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.orderDate}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Phone:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.phone}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Delivery Date:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.deliveryDate}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Delivery State:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.deliveryState}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={{ size: 'auto', offset: 1 }}>Delivery Suburb:</Col>
-                        <Col sm={{ size: 'auto'}}>{this.state.order.deliverySuburb}</Col>
-                    </Row>
-                    <div className="content button">
-                        <Button className="ui button" id="order_history" type="button">
-                            <Link to="/order_history">My History</Link>
-                        </Button>
-                    </div>
-                </Container>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Order ID:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.id}</Col>
+                        </Row>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Order Date:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.orderDate}</Col>
+                        </Row>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Phone:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.phone}</Col>
+                        </Row>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Delivery Date:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.deliveryDate}</Col>
+                        </Row>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Delivery State:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.deliveryState}</Col>
+                        </Row>
+                        <Row>
+                            <Col sm={{ size: 'auto', offset: 1 }}>Delivery Suburb:</Col>
+                            <Col sm={{ size: 'auto'}}>{this.state.order.deliverySuburb}</Col>
+                        </Row>
+                        <div className="content button">
+                            <Button className="ui button" id="order_history" type="button">
+                                <Link to="/order_history">My History</Link>
+                            </Button>
+                        </div>
+                    </Container>
+                    :<span>No order history</span>
+                }
             </div>
         )
     }
