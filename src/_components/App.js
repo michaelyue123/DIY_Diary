@@ -8,6 +8,7 @@ import Profile from './customer/content/Profile';
 import Content from './customer/content/Content';
 import OrderHistory from './customer/content/OrderHistory';
 import Payment from './customer/payment/Payment';
+import MyDiary from './customer/diaryApp/MyDiary';
 import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
@@ -19,6 +20,7 @@ import ReviewOperation from './admin/diary/sub_pages/ReviewOperation'
 import Report from './admin/report/Report'
 import UserDetails from './admin/user/UserDetails'
 import { connect } from 'react-redux';
+import DiaryContent from './customer/diaryApp/DiaryContent';
 
 class App extends React.Component {
     render() {
@@ -40,7 +42,8 @@ class App extends React.Component {
                         <ProtectedRoute exact path="/profile" component={Profile} />
                         <ProtectedRoute exact path="/payment" component={Payment} />
                         <ProtectedRoute exact path="/order_history" component={OrderHistory} />
-                        {/* <ProtectedRoute exact path="/diary" component={Diary} /> */}
+                        <ProtectedRoute exact path="/myDiary" component={MyDiary} />
+                        <ProtectedRoute exact path="/diaryContent" component={DiaryContent} />
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
                         <ProtectedRoute exact path="/admin/user" component={User} />
                         <ProtectedRoute exact path="/admin/diary" component={DiaryM} />

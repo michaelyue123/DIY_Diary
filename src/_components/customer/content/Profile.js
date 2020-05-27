@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import '../../styles/customer/Profile.css';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userConstants } from '../../../_constants/';
 import { AUS_STATES, MELBOURNE_SUBURB } from '../../../_constants';
-import {alertActions} from '../../../_actions';
+import { alertActions } from '../../../_actions';
 
 class Profile extends Component {
 
@@ -32,13 +31,13 @@ class Profile extends Component {
             addressSurburb: symbol==='suburb'?e.target.value:this.state.addressSurburb,
             addressPostcode: symbol==='postcode'?e.target.value:this.state.addressPostcode,
             addressState: symbol==='state'?e.target.value:this.state.addressState 
-        });
-        
+        });   
     }
 
     onSubmitUpdate = async () => {
         await this.props.updateInfo(this.state);
         alertActions.show_success("Update Successfully", "", false, 1500, null);
+        this.props.history.push("/content");
     }
 
     render() {
@@ -98,9 +97,9 @@ class Profile extends Component {
                             onChange={(e)=> this.onInputChange(e, 'suburb')} 
                             placeholder="Street" 
                         />
-                        {/* <Form.Control name="suburb" defaultValue={this.props.user.addressSurburb} custom="true" id="formControl" as="select" custom="true">
+                        <Form.Control name="suburb" value={this.props.user.addressSurburb} id="formControl" as="select" custom="true">
                             {MELBOURNE_SUBURB.map((option) => <option value={option === this.props.user.addressSurburb}>{option}</option>)}
-                        </Form.Control> */}
+                        </Form.Control>
                         <Form.Control 
                             id="formControl" 
                             value={this.state.addressPostcode} 
@@ -115,9 +114,7 @@ class Profile extends Component {
                     </Form.Group>
 
                     <Button className="ui button" id="profile" type="button" onClick={this.onSubmitUpdate}>
-                        {/* <Link to="/content"> */}
-                            <span id="update">Save</span>
-                        {/* </Link> */}
+                        <span id="update">Save</span>
                     </Button>
                 </Form>
             </div>

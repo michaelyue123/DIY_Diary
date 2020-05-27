@@ -29,7 +29,7 @@ const CustomerNavbar = (props) =>  {
                                 <Link className="nav-item nav-link" to="/payment">
                                     Payment
                                 </Link>  
-                                <Link className="nav-item nav-link" to="/diary">
+                                <Link className="nav-item nav-link" to="/myDiary">
                                     My Diary
                                 </Link>    
                             </div>

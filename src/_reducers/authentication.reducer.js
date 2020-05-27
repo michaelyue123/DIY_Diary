@@ -1,6 +1,6 @@
 import { userConstants } from '../_constants';
 
-const initialState = true?{
+const initialState = false?{
   user:{
     id: 'c0001',
     // id: 'a0001',

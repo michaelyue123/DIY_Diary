@@ -47,7 +47,7 @@ const Content = ({ user, order }) => {
                 </div>
             </Container>
 
-            <dl className="dl list" id="block">
+            <Container className="dl list" id="block">
                 <h1 style={{textAlign: "center", fontFamily: "fantasy", fontSize: "1.2em"}}>Order Detail</h1>
                 <hr id="hr" />
                 <Row>
@@ -79,13 +79,12 @@ const Content = ({ user, order }) => {
                         <Link to="/order_history">My History</Link>
                     </Button>
                 </div>
-            </dl>
+            </Container>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return { 
         user: state.authentication.user,
         order: state.orderDetail.order
