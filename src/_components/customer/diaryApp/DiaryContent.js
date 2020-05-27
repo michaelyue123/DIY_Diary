@@ -17,8 +17,8 @@ export class DiaryContent extends Component {
         this.state = {
             paper_color: [],
             paper_type: [],
-            select_paperColor: 'white',
-            select_paperType: 'Light paper',
+            select_paperColor: '',
+            select_paperType: '',
             select_paperType_id: '',
             select_paperColor_id: ''
         }
@@ -50,7 +50,7 @@ export class DiaryContent extends Component {
 
     onSubmitUpdate = async () => {
         const { select_paperColor, select_paperType } = this.state;
-        if(select_paperColor === 'white' || select_paperType === 'Light paper') {
+        if(select_paperColor === '' || select_paperType === '') {
             alertActions.show_warning("You haven't selected anything. Are you sure to continue?", "", "Yes, continue", true, 0, async (isConfirmed) => {
                 if(isConfirmed.value) {
                     await this.props.updateInfo(this.state);
@@ -77,11 +77,12 @@ export class DiaryContent extends Component {
                             className="inputbox"
                             placeholder="Entry Title"
                             aria-label="Title"
+                            style={{ backgroundColor: select_paperColor}}
                             aria-describedby="basic-addon1"
                         />
                     </InputGroup>
                     
-                    <Form.Control className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
+                    <Form.Control style={{ backgroundColor: select_paperColor}} className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
                 </div>
                 <div className="flex-container-one">
                     {
