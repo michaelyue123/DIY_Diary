@@ -1,6 +1,6 @@
 import { diaryConstants } from '../_constants/diary.constants';
 
-const initialState = true?{
+const initialState = false?{
   diarysettings:{
     title_on_cover: 'Test Shopping',
     paper_type: 'White cardboard',
@@ -17,7 +17,7 @@ export function shoppingcart(state = initialState, action) {
       case diaryConstants.UPDATE_DIARY:
         return {
           diarysettings: {
-            title_on_cover: action.diary.title_on_cover,
+            title_on_cover: action.diary.title,
             cover_color: action.diary.select_coverColor,
             paper_color: action.diary.select_paperColor,
             paper_type: action.diary.select_paperType,

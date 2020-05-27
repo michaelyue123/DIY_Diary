@@ -17,21 +17,30 @@ const CustomerNavbar = (props) =>  {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
-                                <Link className="nav-item nav-link" to="/register">
-                                    Register
-                                </Link>
-                                <Link className="nav-item nav-link" to="/login">
-                                    Sign in 
-                                </Link>  
-                                <Link className="nav-item nav-link" to="/content">
-                                    Content
-                                </Link>   
-                                <Link className="nav-item nav-link" to="/payment">
-                                    Payment
-                                </Link>  
-                                <Link className="nav-item nav-link" to="/myDiary">
-                                    My Diary
-                                </Link>    
+                                {
+                                    !props.user ?  
+                                        <Link className="nav-item nav-link" to="/register">
+                                            Register
+                                        </Link>  : <Link></Link>
+                                }
+                                {
+                                    !props.user ?  
+                                        <Link className="nav-item nav-link" to="/login">
+                                            Sign in 
+                                        </Link>  : <Link></Link>
+                                }
+                                {
+                                    props.user ?  
+                                        <Link className="nav-item nav-link" to="/content">
+                                            My Home
+                                        </Link>  : <Link></Link>
+                                }
+                                {
+                                    props.user ?  
+                                        <Link className="nav-item nav-link" to="/myDiary">
+                                            Buy Diary
+                                        </Link>  : <Link></Link>
+                                }
                             </div>
                         </div>
                     </nav>

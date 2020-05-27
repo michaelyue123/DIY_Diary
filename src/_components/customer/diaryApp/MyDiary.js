@@ -16,7 +16,7 @@ class MyDiary extends Component {
             title: '',
             cover_color: [],
             select_coverColor: 'LightBlue',
-            select_coverColor_id: '',
+            select_coverColor_id: 1,
             errors: {
                 title: ''
             },
@@ -78,36 +78,42 @@ class MyDiary extends Component {
         
         return (
             <div>
-                <div style={{ backgroundColor: select_coverColor}} className="app container">
-                    <h1 className="diary title">{title}</h1>
-                </div>
-                <div className="flex-container">
-                    {
-                        cover_color.map((option) => {
-                            return <option key={option.id} onClick={() => this.setState({select_coverColor: option.description.replace(" ",""), select_coverColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
-                        })
-                    }
-                    
-                </div>
-
-                <Form className="diary cover">
-                    <Form.Label style={{color: 'aliceblue', marginBottom: '15px'}}>Please enter a text for diary title</Form.Label>
-                    <div className="text box">
-                        <Form.Control 
-                            className="cover text" 
-                            type="text" 
-                            name="title"
-                            placeholder="title on the cover"
-                            onChange={this.onInputChange} 
-                        />
-                        {errors.title.length > 0 &&
-                            <span className='error' style={{color: 'aliceblue', fontSize: '2vw'}}>{errors.title}</span>}
+                <div style={{float:"left", marginLeft: "10%"}}>
+                    <div style={{ backgroundColor: select_coverColor, float:"left", marginLeft: "10%"}} className="app container">
+                        <h1 className="diary title">{title}</h1>
                     </div>
+                </div>
+                <div style={{float: "right", marginRight: "10%"}}>
+                    <div className="flex-container">
+                        {
+                            cover_color.map((option) => {
+                                return <option key={option.id} onClick={() => this.setState({select_coverColor: option.description.replace(" ",""), select_coverColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
+                            })
+                        }
+                        
+                    </div>
+                    <div>
+                        <Form className="diary cover">
+                            <Form.Label style={{color: 'aliceblue', marginBottom: '15px'}}>Please enter a text for diary title</Form.Label>
+                            <div className="text box">
+                                <Form.Control 
+                                    className="cover text" 
+                                    type="text" 
+                                    name="title"
+                                    placeholder="title on the cover"
+                                    onChange={this.onInputChange} 
+                                />
+                                {errors.title.length > 0 &&
+                                    <span className='error' style={{color: 'aliceblue', fontSize: '2vw'}}>{errors.title}</span>}
+                            </div>
 
-                    <Button onClick={this.onClickChange} className="ui button" id="personal" type="button">
-                        Next
-                    </Button>
-                </Form>
+                            <Button onClick={this.onClickChange} className="ui button" id="personal" type="button">
+                                Next
+                            </Button>
+                        </Form>
+                    </div>
+                </div>
+                
             </div>
         )
     }

@@ -17,10 +17,13 @@ export class DiaryContent extends Component {
         this.state = {
             paper_color: [],
             paper_type: [],
-            select_paperColor: 'white',
+            select_paperColor: 'White',
             select_paperType: 'Light paper',
-            select_paperType_id: '',
-            select_paperColor_id: ''
+            select_paperType_id: 2,
+            select_paperColor_id: 2,
+            title: props.shoppingcart.title_on_cover,
+            select_coverColor: props.shoppingcart.cover_color,
+            select_coverColor_id: props.shoppingcart.cover_color_id,
         }
 
         this.getParameters = this.getParameters.bind(this);
@@ -48,7 +51,8 @@ export class DiaryContent extends Component {
 
     }
 
-    onSubmitUpdate = () => {
+    onSubmitUpdate = async () => {
+        console.log(this.state)
         const { select_paperColor, select_paperType } = this.state;
         if(select_paperColor === 'white' || select_paperType === 'Light paper') {
             alertActions.show_warning("You haven't selected anything. Are you sure to continue?", "", "Yes, continue", true, 0, async (isConfirmed) => {
