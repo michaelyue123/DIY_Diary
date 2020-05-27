@@ -83,11 +83,11 @@ class MyDiary extends Component {
                         <h1 className="diary title">{title}</h1>
                     </div>
                 </div>
-                <div style={{float: "right", marginRight: "10%"}}>
+                <div style={{float: "right", marginRight: "20%"}}>
                     <div className="flex-container">
                         {
                             cover_color.map((option) => {
-                                return <option key={option.id} onClick={() => this.setState({select_coverColor: option.description.replace(" ",""), select_coverColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
+                                return <option id={option.id} onClick={() => this.setState({select_coverColor: option.description.replace(" ",""), select_coverColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
                             })
                         }
                         
