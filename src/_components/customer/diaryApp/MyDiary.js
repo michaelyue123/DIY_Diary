@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { diaryConstants } from '../../../_constants/diary.constants';
 import { commonActions } from '../../../_actions/common.action';
+import { alertActions } from '../../../_actions/alert.actions';
 
 class MyDiary extends Component {
 
@@ -15,7 +16,10 @@ class MyDiary extends Component {
             title: '',
             cover_color: [],
             select_coverColor: 'LightBlue',
-            select_coverColor_id: ''
+            select_coverColor_id: '',
+            errors: {
+                title: ''
+            },
         }
 
         this.getParameters = this.getParameters.bind(this);
@@ -38,21 +42,39 @@ class MyDiary extends Component {
 
     }
 
-    onInputChange = async (e, symbol) => {
+    onInputChange = async (e) => {
         e.preventDefault();
-        await this.setState({ 
-            title: symbol === 'title' ? e.target.value:this.state.title,     
-        });    
+        const { name, value } = e.target;
+        let errors = this.state.errors;
+
+        switch (name) {
+            case 'title':
+                 errors.title = value.length > 8
+                    ? 'Title must be within 8 characters!'
+                    : '';
+                break;
+            default:
+                break;
+        }
+        await this.setState({ errors, [name]: value });    
     }
 
     onClickChange = async () => {
-        await this.props.updateInfo(this.state);
-        this.props.history.push('/diaryContent');
+        const { title, select_coverColor, errors } = this.state;
+
+        if(title === '' || select_coverColor === '') {
+            alertActions.show_error("Oops...", 'Please fill in all required details above!')
+        } else if(errors.title !== '') {
+            alertActions.show_error("Oops...", 'Please make sure details you\'ve entered are correct!');
+        } else {
+            await this.props.updateInfo(this.state);
+            this.props.history.push('/diaryContent');
+        }
     }
 
 
     render() {
-        const { title, cover_color, select_coverColor } = this.state;
+        const { title, cover_color, select_coverColor, errors } = this.state;
         
         return (
             <div>
@@ -74,9 +96,12 @@ class MyDiary extends Component {
                         <Form.Control 
                             className="cover text" 
                             type="text" 
-                            placeholder="text on the cover"
-                            onChange={(e)=> this.onInputChange(e, 'title')} 
+                            name="title"
+                            placeholder="title on the cover"
+                            onChange={this.onInputChange} 
                         />
+                        {errors.title.length > 0 &&
+                            <span className='error' style={{color: 'aliceblue', fontSize: '2vw'}}>{errors.title}</span>}
                     </div>
 
                     <Button onClick={this.onClickChange} className="ui button" id="personal" type="submit">
