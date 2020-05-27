@@ -104,7 +104,7 @@ class MyDiary extends Component {
                             <span className='error' style={{color: 'aliceblue', fontSize: '2vw'}}>{errors.title}</span>}
                     </div>
 
-                    <Button onClick={this.onClickChange} className="ui button" id="personal" type="submit">
+                    <Button onClick={this.onClickChange} className="ui button" id="personal" type="button">
                         Next
                     </Button>
                 </Form>
