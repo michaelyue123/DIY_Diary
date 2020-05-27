@@ -50,12 +50,19 @@ export class DiaryContent extends Component {
 
     onSubmitUpdate = async () => {
         const { select_paperColor, select_paperType } = this.state;
-        if(select_paperColor === '' || select_paperType === '') {
-            alertActions.show_warning("Update Successfully", "", false, 1500, null);
+        if(select_paperColor === 'white' || select_paperType === 'Light paper') {
+            alertActions.show_warning("You haven't selected anything. Are you sure to continue?", "", "Yes, continue", true, 0, async (isConfirmed) => {
+                if(isConfirmed.value) {
+                    await this.props.updateInfo(this.state);
+                    alertActions.show_success("Update Successfully", "", false, 1500, null);
+                    this.props.history.push("/payment");
+                }
+            }, null);
+        } else {
+            await this.props.updateInfo(this.state);
+            alertActions.show_success("Update Successfully", "", false, 1500, null);
+            this.props.history.push("/payment");
         }
-        await this.props.updateInfo(this.state);
-        alertActions.show_success("Update Successfully", "", false, 1500, null);
-        this.props.history.push("/payment");
     }
 
     
@@ -95,10 +102,10 @@ export class DiaryContent extends Component {
                         </Form.Control>                      
                     </Form.Group>
 
-                    <Button onClick={this.onSubmitUpdate} className="ui button" id="content-button" type="submit">
+                    <Button onClick={this.onSubmitUpdate} className="ui button" id="content-button" type="button">
                         Submit
                     </Button>
-                    <Button onClick={() => this.props.history.push('/myDiary')} className="ui button" id="content-button" type="submit">
+                    <Button onClick={() => this.props.history.push('/myDiary')} className="ui button" id="content-button" type="button">
                         Cancel
                     </Button>
                 </Form>
