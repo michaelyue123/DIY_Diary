@@ -46,7 +46,7 @@ class UserProfile extends Component{
                     <Form>
                         <Form.Row>
                             <Form.Group as={Col} md="4" controlId="user_id">
-                                <Form.Label>Car ID:</Form.Label>
+                                <Form.Label>User ID:</Form.Label>
                                 <Form.Control 
                                     type="text" 
                                     value={this.state.target_user.id} 
