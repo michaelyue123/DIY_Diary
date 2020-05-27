@@ -6,6 +6,7 @@ import { diaryConstants } from '../../../_constants/diary.constants';
 import { connect } from 'react-redux';
 import { commonActions } from '../../../_actions/common.action';
 import { alertActions } from '../../../_actions';
+import $ from 'jquery'
 
 
 
@@ -17,10 +18,13 @@ export class DiaryContent extends Component {
         this.state = {
             paper_color: [],
             paper_type: [],
-            select_paperColor: '',
-            select_paperType: '',
-            select_paperType_id: '',
-            select_paperColor_id: ''
+            select_paperColor: 'White',
+            select_paperType: 'Light paper',
+            select_paperType_id: 2,
+            select_paperColor_id: 2,
+            title: props.shoppingcart.title_on_cover,
+            select_coverColor: props.shoppingcart.cover_color,
+            select_coverColor_id: props.shoppingcart.cover_color_id,
         }
 
         this.getParameters = this.getParameters.bind(this);
@@ -49,6 +53,11 @@ export class DiaryContent extends Component {
     }
 
     onSubmitUpdate = async () => {
+        let paper_type = $('select#user_state option:checked')[0].id.split('-')
+        await this.setState({
+            select_paperType: paper_type[1],
+            select_paperType_id: paper_type[0],
+        });
         const { select_paperColor, select_paperType } = this.state;
         if(select_paperColor === '' || select_paperType === '') {
             alertActions.show_warning("You haven't selected anything. Are you sure to continue?", "", "Yes, continue", true, 0, async (isConfirmed) => {
@@ -65,7 +74,6 @@ export class DiaryContent extends Component {
         }
     }
 
-    
     render() {
         const { paper_color, paper_type, select_paperColor } = this.state;
 
@@ -83,33 +91,49 @@ export class DiaryContent extends Component {
                     </InputGroup>
                     
                     <Form.Control style={{ backgroundColor: select_paperColor}} className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
-                </div>
-                <div className="flex-container-one">
-                    {
-                        paper_color.map((option) => {
-                            return <option key={option.id} onClick={() => this.setState({select_paperColor: option.description.replace(" ",""), select_paperColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
-                        })
-                    }
-                </div>
-
-                <Form className="paper type">
-                    <Form.Group controlId="user_state">
-                        <Form.Label style={{color: 'aliceblue', marginBottom: '15px'}}>Please select a paper type </Form.Label>
-                        <Form.Control as="select" custom="true">
-                            { 
-                                paper_type.map((option) => 
-                                <option key={option.id} className="select list" onClick={() => this.setState({select_paperType: option.description, select_paperType_id: option.id})} value={option.description}>{option.description}</option>)
+                    <div style={{float:"left", marginLeft: "5%"}}>
+                        <div style={{ backgroundColor: select_paperColor}} className="diary content">
+                            <InputGroup className="mb-3">
+                                <FormControl
+                                    className="inputbox"
+                                    placeholder="Entry Title"
+                                    aria-label="Title"
+                                    aria-describedby="basic-addon1"
+                                />
+                            </InputGroup>
+                            
+                            <Form.Control className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
+                        </div>
+                    </div>
+                    <div style={{float: "right", marginRight: "20%"}}>
+                        <div className="flex-container-one">
+                            {
+                                paper_color.map((option) => {
+                                    return <option id={option.id} key={option.id} onClick={() => this.setState({select_paperColor: option.description.replace(" ", ""), select_paperColor_id: option.id})}  style={{backgroundColor: option.description.replace(" ","")}} />
+                                })
                             }
-                        </Form.Control>                      
-                    </Form.Group>
+                        </div>
 
-                    <Button onClick={this.onSubmitUpdate} className="ui button" id="content-button" type="button">
-                        Submit
-                    </Button>
-                    <Button onClick={() => this.props.history.push('/myDiary')} className="ui button" id="content-button" type="button">
-                        Cancel
-                    </Button>
-                </Form>
+                        <Form className="paper type">
+                            <Form.Group controlId="user_state">
+                                <Form.Label style={{color: 'aliceblue', marginBottom: '15px'}}>Please select a paper type </Form.Label>
+                                <Form.Control as="select" custom="true">
+                                    { 
+                                        paper_type.map((option) => 
+                                        <option id={`${option.id}-${option.description}`} className="select list" value={option}>{option.description}</option>)
+                                    }
+                                </Form.Control>                      
+                            </Form.Group>
+
+                            <Button onClick={this.onSubmitUpdate} className="ui button" id="content-button-submit" type="button">
+                                Submit
+                            </Button>
+                            <Button onClick={() => this.props.history.push('/myDiary')} className="ui button" id="content-button" type="button">
+                                Cancel
+                            </Button>
+                        </Form>
+                    </div>
+                </div>    
             </div>
         )
     }

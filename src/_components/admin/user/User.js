@@ -5,7 +5,7 @@ import Popup from "reactjs-popup";
 import { Button} from 'react-bootstrap';
 import CommonReg from '../../customer/register/CommonReg';
 import RegSubmit from '../../customer/register/RegSubmit';
-import { adminActions, userActions, alertActions } from '../../../_actions';
+import { adminActions, alertActions } from '../../../_actions';
 import { connect } from 'react-redux';
 import DataTable from 'react-data-table-component';
 import { userConstants } from '../../../_constants'
@@ -76,15 +76,15 @@ class User extends Component{
                 { 
                     cell: (row) => {
                         return row.active?
-                            <Button variant="danger" style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, false)}}>Block</Button>:
-                            <Button variant="success" style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, true)}}>Active</Button>
+                            <Button variant="danger" id={`${row.id}-ba-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, false)}}>Block</Button>:
+                            <Button variant="success" id={`${row.id}-ac-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.changeActive(row, true)}}>Active</Button>
                     },
                     ignoreRowClick: true,
                     allowOverflow: true
                 },
                 { 
                     cell: (row) => {
-                        return <Button variant="info" style={{"cursor":"pointer"}} onClick={()=>{this.goToDetail(row)}}>Details</Button>
+                        return <Button variant="info" id={`${row.id}-detail-btn`} style={{"cursor":"pointer"}} onClick={()=>{this.goToDetail(row)}}>Details</Button>
                     },
                     ignoreRowClick: true,
                     allowOverflow: true
@@ -118,7 +118,7 @@ class User extends Component{
     }
 
     changeActive = (data, status) => {
-        alertActions.show_warning("Are you sure to "+(status?"active":"block")+" the user?", "", "Yes, cancel it.", true, 0, async (isConfirm)=>{
+        alertActions.show_warning("Are you sure to "+(status?"active":"block")+" the user?", "", "Yes, "+(status?"active":"block")+" it.", true, 0, async (isConfirm)=>{
             if (isConfirm.value){
                 let result = await adminActions.changeActive(data, status)
                 console.log(result)
@@ -174,11 +174,15 @@ class User extends Component{
     onFormSubmit = async (e) => {
         e.preventDefault();
         const { email, password, confirmPassword, username, checked, errors, role} = this.state;
+        
+        console.log(this.state)
 
         if(email !== '' && password !== '' && confirmPassword !== '' && username !== '') {
+            console.log(errors)
+            console.log(validateForm(errors))
             if(validateForm(errors)) {
                 if(checked) {
-                    this.props.register(role?role:2, username, email, password);
+                    adminActions.registerAdmin(role?role:2, username, email, password);
                 }else {
                     this.props.waringAlert("Oops...", 'Please make sure you\'ve checked the box!')
                 }
@@ -204,7 +208,7 @@ class User extends Component{
                                 </a>
                                 <div id="pop_header" style={{}}> 
                                     <span>   
-                                        Add A Administrator
+                                        Add An Administrator
                                     </span>
                                 </div>
                                 <div id="pop_content">
@@ -249,7 +253,6 @@ class User extends Component{
 
 const actionCreators = (dispatch) => {
     return {
-        register: userActions.register,
         waringAlert: alertActions.error,
         goToDetail: (user) => { dispatch({ type: userConstants.DETAIL, user })}
     }

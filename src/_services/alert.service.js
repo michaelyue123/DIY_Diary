@@ -53,7 +53,7 @@ function warning(title, message, confirm_btn_text, showConfirmButton, timer, con
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: confirm_btn_text,
-        timer: timer===0?999999:timer
+        timer: timer
 
       }).then(confirm_func)
 }

@@ -6,13 +6,14 @@ import Register from './customer/register/Register';
 import Login from './common/Login';
 import Profile from './customer/content/Profile';
 import Content from './customer/content/Content';
+import OrderHistory from './customer/content/OrderHistory';
 import Payment from './customer/payment/Payment';
 import MyDiary from './customer/diaryApp/MyDiary';
 import PageNotFound from './PageNotFound';
 import ProtectedRoute from './ProtectedRoute';
 import AdminHome from './admin/AdminHome';
 import User from './admin/user/User'
-import Diary from './admin/diary/Diary'
+import DiaryM from './admin/diary/Diary'
 import ParametersOperations from './admin/diary/sub_pages/ParametersOperation'
 import OrderOperation from './admin/diary/sub_pages/OrderOperation'
 import ReviewOperation from './admin/diary/sub_pages/ReviewOperation'
@@ -40,11 +41,12 @@ class App extends React.Component {
                         <ProtectedRoute exact path="/content" component={Content} />
                         <ProtectedRoute exact path="/profile" component={Profile} />
                         <ProtectedRoute exact path="/payment" component={Payment} />
+                        <ProtectedRoute exact path="/order_history" component={OrderHistory} />
                         <ProtectedRoute exact path="/myDiary" component={MyDiary} />
                         <ProtectedRoute exact path="/diaryContent" component={DiaryContent} />
                         <ProtectedRoute exact path="/admin" component={AdminHome} />
                         <ProtectedRoute exact path="/admin/user" component={User} />
-                        <ProtectedRoute exact path="/admin/diary" component={Diary} />
+                        <ProtectedRoute exact path="/admin/diary" component={DiaryM} />
                         <ProtectedRoute exact path="/admin/diary/parameters" component={ParametersOperations} />
                         <ProtectedRoute exact path="/admin/diary/orders" component={OrderOperation} />
                         <ProtectedRoute exact path="/admin/diary/reviews" component={ReviewOperation} />

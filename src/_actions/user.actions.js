@@ -62,7 +62,7 @@ function register(role, name, email, password) {
         userService.register(role, name, email, password)
             .then(
                 user => { 
-
+                    console.log(user)
                     if (user){
 
                         let role = 2;

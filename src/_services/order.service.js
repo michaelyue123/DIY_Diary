@@ -3,7 +3,7 @@ import { API_URL } from '../_constants';
 
 export const orderService = {
     getOrders,
-    getOrder,
+    addReview,
     sendOrder
 };
 
@@ -26,8 +26,16 @@ async function getOrders(userId, number) {
     }
 }
 
-function getOrder(userId){
-
+async function addReview(userId, orderId, reviewScore, reviewDesc){
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: qs.stringify({userId, orderId, reviewScore, reviewDesc})
+    };
+    
+    const response = await fetch(API_URL + "/order/addReview", requestOptions);
+    const response_1 = await handleResponse(response);
+    return response_1;
 }
 
 async function sendOrder(order){

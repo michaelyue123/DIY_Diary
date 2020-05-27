@@ -24,18 +24,18 @@ class DiaryNavButton extends Component{
             <div style={{"marginTop":"2%"}}>
 
                 <Link to="/admin/diary/orders">
-                    <Button className="menu-button" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="orders"} value="orders">
+                    <Button className="menu-button" id="orders_btn" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="orders"} value="orders">
                     Orders
                    </Button>
                 </Link>
 
                 <Link to="/admin/diary/parameters">
-                     <Button className="menu-button" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="parameters"} value="parameters">
+                     <Button className="menu-button" id="parameters_btn" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="parameters"} value="parameters">
                         Parameters
                      </Button>
                 </Link>
                 <Link to="/admin/diary/reviews">
-                    <Button className="menu-button" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="reviews"} value="reviews">
+                    <Button className="menu-button" id="reviews_btn" variant="light" type="button" onClick={this.changeTarget} disabled={this.state.action==="reviews"} value="reviews">
                         Reviews
                     </Button>
                 </Link>
