@@ -85,12 +85,13 @@ export class DiaryContent extends Component {
                             <FormControl
                                 className="inputbox"
                                 placeholder="Entry Title"
+                                style={{ backgroundColor: select_paperColor}}
                                 aria-label="Title"
                                 aria-describedby="basic-addon1"
                             />
                         </InputGroup>
                         
-                        <Form.Control className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
+                        <Form.Control style={{ backgroundColor: select_paperColor}} className="textbox" placeholder="Your entry here" as="textarea" rows="13" />   
                     </div>
                 </div>
                 <div style={{float: "right", marginRight: "20%"}}>
