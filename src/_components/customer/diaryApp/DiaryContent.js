@@ -48,14 +48,17 @@ export class DiaryContent extends Component {
 
     }
 
-    onSubmitUpdate = async () => {
+    onSubmitUpdate = () => {
         const { select_paperColor, select_paperType } = this.state;
         if(select_paperColor === '' || select_paperType === '') {
-            alertActions.show_warning("Update Successfully", "", false, 1500, null);
+            alertActions.show_warning("Are you sure ......", "", "Yes", true, 0, async (isConfirm)=>{
+                if (isConfirm.value){
+                    await this.props.updateInfo(this.state);
+                    alertActions.show_success("Update Successfully", "", false, 1500, null);
+                    this.props.history.push("/payment");
+                }
+            }, null);
         }
-        await this.props.updateInfo(this.state);
-        alertActions.show_success("Update Successfully", "", false, 1500, null);
-        this.props.history.push("/payment");
     }
 
     
