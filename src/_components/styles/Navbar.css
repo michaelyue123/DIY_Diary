@@ -1,0 +1,14 @@
+h5 {
+    color: rgb(218, 228, 236);
+    cursor: pointer;
+}
+
+.navbar.navbar-expand-lg.navbar-dark.bg-dark {
+    position: relative;
+}
+
+.navbar-brand {
+    font-family: fantasy;
+    font-style: italic;
+    font-size: 1.2em;
+}

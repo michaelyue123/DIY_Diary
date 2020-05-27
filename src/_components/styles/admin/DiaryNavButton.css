@@ -1,0 +1,12 @@
+.menu-button {
+    display: inline-block; 
+    text-align: center;
+    position: relative;
+    /* color: aliceblue; */
+    font-size: 1.2vw;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 1s;
+    margin-right: 1%;
+    margin-left: 1%;
+}

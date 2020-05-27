@@ -1,0 +1,57 @@
+#content {
+    position: relative;
+    color: aliceblue;
+    text-align: center;
+}
+
+.dl.list {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+    position: relative;
+    color: aliceblue;
+    width: 38%;
+    line-height: 3.7vw;
+    margin-top: 3%;
+    font-size: 1.8vw;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+#hr {
+    border-top: 1px solid aliceblue;
+}
+
+.dl.list:hover {
+    transform: scale(1.1);
+}
+
+.ui.button {
+    border-radius: 5px;
+}
+
+#update {
+    color: black;
+    font-size: 1.1vw;
+}
+
+#personal {
+    margin: 2%;
+}
+
+#block {
+    display: inline-block; 
+    margin-left: 10%; 
+}
+
+.content.button {
+    margin-left: 40%;
+    margin-right: 35%;
+}
+
+
+
+
+
+
+
+
