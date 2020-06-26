@@ -1,0 +1,58 @@
+.ui.home {
+    text-align: center;
+    margin-top: 150px;
+    color: aliceblue;
+    position: relative;
+    font-family: fantasy;
+    font-size: 3.3vw;
+    transition: 1s;
+    margin-bottom: 50px;
+}
+
+.ui.home:hover {
+    transform: scale(1.1);
+}
+
+.home.wrap {
+    transform: translate(0, -80px);
+    
+}
+
+#universe {
+    width: 600px;
+    height: 30%px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    border: 5px solid rgba(0, 0, 0, 0.3);    
+    transition: 1s;
+    transform: translate(0, -40px);
+}
+
+#universe:hover {
+    transform: scale(1.15);
+}
+
+#text1 {
+    position: relative;
+    color: aliceblue;
+    font-family: fantasy;
+    font-size: 2.8vw;
+    text-align: center;
+    transition: 1s;
+}
+
+#text1:hover {
+    transform: scale(1.1);
+}
+
+.carousel {
+    position: relative;
+    width: 48%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.d-block.w-100 {
+    border-radius: 15px;
+}

@@ -1,0 +1,98 @@
+.login {
+    text-align: center;
+    color: aliceblue;
+    position: relative;
+}
+
+.ui.container1 {
+    width: 30%;
+    position: relative;
+    background-color: white;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.ui.button:hover {
+    background-color: rgb(44, 103, 107);
+}
+
+#form {
+    margin: 20px;
+}
+
+#one {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3em;
+}
+
+span.icon:before {
+    font-family: FontAwesome;
+    content: \f003;
+    color: grey;
+}
+
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.input-group-addon:first-child {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group-lg>.input-group-addon {
+    height: 35px;
+    padding: 10px 16px;
+    line-height: 1.33;
+    border-radius: 10px 4px 4px 10px;
+    background-color: rgb(186, 196, 196);
+}
+
+.input-group-addon {
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+    border-color: #eee;
+    border: 1px solid #ccc;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+    transform: translate(0.5px, -1px);
+}
+
+.fa.fa-lock {
+    transform: scale(1.5);
+}
+
+.fa.fa-envelope {
+    transform: scale(1.2);
+}
+
+.form-check {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+#exampleCheck1 {
+    margin-top: 7.2px;
+}
+
+.ui.form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.margin-top {
+    margin-top: 60px;
+}
+
+
