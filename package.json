@@ -33,8 +33,12 @@
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.0",
     "sweetalert2": "^9.10.6",
+<<<<<<< HEAD
     "sweetalert2-react-content": "^3.0.1",
     "websocket-extensions": "^0.1.4"
+=======
+    "sweetalert2-react-content": "^3.0.1"
+>>>>>>> f06ae2feb03bfd56b6909175d9f00ca103f23e70
   },
   "scripts": {
     "start": "react-scripts start",
