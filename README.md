@@ -21,11 +21,12 @@ Currently, IOS and Android application are not available.
 
 # Run App
 
-``
+```
 cd Project Folder
-``
+```
 
-``
+```
 npm start
-``
+```
+
 
